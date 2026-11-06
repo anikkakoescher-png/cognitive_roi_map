@@ -1,0 +1,26 @@
+{
+  "data_points": 23517,
+  "by_indicator": {
+    "ai_share_postings": 837,
+    "postings_index_group": 21789,
+    "postings_index_total": 891
+  },
+  "countries": [
+    "AU",
+    "CA",
+    "DE",
+    "EA",
+    "ES",
+    "FR",
+    "GB",
+    "IE",
+    "IT",
+    "NL",
+    "US"
+  ],
+  "latest_month": "2026-10",
+  "sources": [
+    "Indeed Hiring Lab, AI Tracker (github.com/hiring-lab/ai-tracker), CC BY 4.0",
+    "Indeed Hiring Lab, Job Postings Tracker (github.com/hiring-lab/job_postings_tracker), CC BY 4.0"
+  ]
+}

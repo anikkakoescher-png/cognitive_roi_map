@@ -1,0 +1,654 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Cognitive ROI Map</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800&family=Instrument+Serif:ital@1&display=swap">
+<style>
+/* Layout: one calm column; a sticky view switcher; each view = one idea per screen. Human = soft black, AI = warm stone, yellow = "look here". */
+:root{
+  --bg:#FBFAF7; --surface:#F3F0EA; --line:#E4DFD6; --ink:#1F1D1A; --ink-2:#4A4540; --muted:#6F665C;
+  --human:#2B2824; --ai:#978B7B; --mark:#F3DE63; --on-mark:#1F1D1A;
+  --sans:"Inter Tight",ui-sans-serif,system-ui,-apple-system,"Segoe UI",Arial,sans-serif;
+  --serif:"Instrument Serif",Georgia,"Times New Roman",serif;
+  --r:14px; --slow:700ms cubic-bezier(.2,.7,.2,1);
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#161513; --surface:#201E1B; --line:#34312C; --ink:#EEEAE3; --ink-2:#C9C3BA; --muted:#A39A8E;
+  --human:#ECE7DF; --ai:#8E8476; --mark:#E2C94B; --on-mark:#161513; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#161513; --surface:#201E1B; --line:#34312C; --ink:#EEEAE3; --ink-2:#C9C3BA; --muted:#A39A8E;
+  --human:#ECE7DF; --ai:#8E8476; --mark:#E2C94B; --on-mark:#161513; color-scheme:dark}
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+.pad{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.wrap{max-width:1120px;margin:0 auto}
+a{color:inherit;text-underline-offset:3px;text-decoration-thickness:1px}
+a:hover{text-decoration-thickness:2px}
+:focus-visible{outline:2px solid var(--ink);outline-offset:3px;border-radius:6px}
+h1,h2,h3{margin:0;text-wrap:balance;letter-spacing:-.02em}
+p{margin:0}
+.em{font-family:var(--serif);font-style:italic;font-weight:400;letter-spacing:0}
+.hl{background:linear-gradient(transparent 58%,var(--mark) 58%,var(--mark) 92%,transparent 92%);padding:0 .08em;color:inherit}
+.label{font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.muted{color:var(--ink-2)}
+.tnum{font-variant-numeric:tabular-nums}
+
+/* header + switcher */
+.top{display:flex;justify-content:space-between;align-items:center;gap:12px;padding-block:20px 14px;flex-wrap:wrap}
+.brand{font-weight:700;display:flex;align-items:center;gap:10px}
+.dot{width:10px;height:10px;border-radius:50%;background:var(--mark);box-shadow:0 0 0 1px var(--ink) inset;display:inline-block}
+.meta{font-size:13px;color:var(--muted)}
+.switchbar{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);border-bottom:1px solid var(--line)}
+.switch{display:flex;gap:4px;overflow-x:auto;padding-block:10px;scrollbar-width:none}
+.switch::-webkit-scrollbar{display:none}
+.switch a{flex:none;font-size:14px;font-weight:600;text-decoration:none;color:var(--ink-2);padding:8px 14px;border-radius:999px;border:1px solid transparent;transition:background var(--slow),color var(--slow)}
+.switch a:hover{background:var(--surface);color:var(--ink)}
+.switch a[aria-current="page"]{background:var(--ink);color:var(--bg)}
+
+/* views */
+.view{padding-block:40px 24px}
+.vhead{display:grid;gap:10px;max-width:760px;margin-bottom:26px}
+.vhead h1{font-size:clamp(30px,5vw,52px);line-height:1.05;font-weight:800}
+.vhead p{font-size:17px;color:var(--ink-2);max-width:62ch}
+.q{font-size:14px;color:var(--muted)}
+.btn{font:inherit;font-size:14px;font-weight:600;border-radius:999px;padding:9px 16px;border:1px solid var(--ink);background:transparent;color:var(--ink);cursor:pointer;text-decoration:none;transition:background var(--slow),color var(--slow)}
+.btn:hover{background:var(--ink);color:var(--bg)}
+.btn[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
+.btns{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.sample{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;border:1px dashed var(--muted);color:var(--ink-2);border-radius:6px;padding:3px 8px;background:var(--surface);white-space:nowrap}
+.real{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;border:1px solid var(--ink);color:var(--ink);border-radius:6px;padding:3px 8px;white-space:nowrap}
+.credit{font-size:12px;color:var(--muted);margin-top:10px;line-height:1.5}
+.panel{border:1px solid var(--line);border-radius:var(--r);padding:20px;background:var(--bg);min-width:0}
+.panel.strong{border-color:var(--ink)}
+.ctitle{font-size:18px;font-weight:700;line-height:1.3;margin-bottom:4px}
+.csub{font-size:14px;color:var(--ink-2);margin-bottom:14px}
+.legend{display:flex;gap:16px;flex-wrap:wrap;font-size:13px;color:var(--ink-2);align-items:center}
+.sw{display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:6px;vertical-align:-1px}
+
+/* MAP */
+.threads{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+.thr{font:inherit;font-size:14px;text-align:left;border:1px solid var(--line);background:var(--bg);color:var(--ink);border-radius:12px;padding:10px 14px;cursor:pointer;display:grid;gap:2px;max-width:320px;transition:border-color var(--slow),background var(--slow)}
+.thr b{font-weight:700}
+.thr span{font-size:12px;color:var(--muted)}
+.thr:hover{border-color:var(--ink)}
+.thr[aria-pressed="true"]{border-color:var(--ink);background:var(--surface)}
+.thr.weak{border-style:dashed}
+.mapbox{position:relative}
+.mapgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;position:relative;z-index:1}
+.field{border:1px solid var(--line);border-radius:var(--r);padding:16px;min-height:200px;display:grid;grid-template-rows:auto 1fr;gap:12px;background:color-mix(in srgb,var(--bg) 82%,transparent)}
+.fhead{display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+.fhead h3{font-size:17px;font-weight:700}
+.fhead span{font-size:12px;color:var(--muted)}
+.fq{font-size:13px;color:var(--ink-2);margin-top:-6px}
+.bubbles{display:flex;flex-wrap:wrap;gap:12px;align-items:center;align-content:flex-start}
+.bub{border:0;padding:0;cursor:pointer;border-radius:50%;background:var(--surface);box-shadow:0 0 0 1.5px var(--ink) inset;transition:transform var(--slow),opacity var(--slow),background var(--slow);position:relative}
+.bub:hover{transform:scale(1.1)}
+.bub.on{background:var(--mark);box-shadow:0 0 0 1.5px var(--ink) inset,0 0 0 3px var(--bg)}
+.bub.dim{opacity:.28}
+.bub.sel{outline:2px solid var(--ink);outline-offset:3px}
+.overlay{position:absolute;inset:0;pointer-events:none;z-index:2;overflow:visible}
+.overlay path{fill:none;stroke:var(--ink);stroke-width:1.5;stroke-dasharray:5 5;opacity:.75}
+.mapfoot{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:14px;align-items:center}
+.detail{margin-top:16px;display:grid;gap:12px}
+.detail h3{font-size:21px;font-weight:700;line-height:1.25}
+.kv{display:grid;grid-template-columns:130px 1fr;gap:8px 18px;font-size:15px}
+.kv dt{font-size:13px;color:var(--muted);font-weight:600;padding-top:2px}
+.kv dd{margin:0;min-width:0}
+.pill{display:inline-block;font-size:12px;font-weight:600;border:1px solid var(--line);border-radius:999px;padding:2px 9px;margin:0 4px 4px 0;color:var(--ink-2)}
+.threadnote{border-left:3px solid var(--mark);padding:6px 0 6px 12px;font-size:15px;color:var(--ink-2)}
+
+
+/* RADAR */
+.radarwrap{display:grid;grid-template-columns:minmax(0,1.8fr) minmax(0,1fr);gap:20px;align-items:start}
+.rtools{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:10px}
+.search{font:inherit;font-size:14px;border:1px solid var(--line);background:var(--bg);color:var(--ink);border-radius:999px;padding:9px 16px;min-width:0;flex:1 1 200px;max-width:320px}
+.search:focus{outline:2px solid var(--ink);outline-offset:2px}
+.hits{font-size:13px;color:var(--muted)}
+#radar{width:100%;height:auto;display:block;overflow:visible;touch-action:manipulation}
+#radar text{font-family:var(--sans)}
+.sector{fill:transparent;cursor:pointer;transition:fill var(--slow)}
+.sector:hover,.sector.focus{fill:var(--surface)}
+.ring{fill:none;stroke:var(--line)}
+.spoke{stroke:var(--line)}
+.aname{font-size:21px;font-weight:700;fill:var(--ink);cursor:pointer;letter-spacing:-.01em}
+.aq{font-size:14px;fill:var(--muted)}
+.ringlbl{font-size:12px;fill:var(--muted);letter-spacing:.06em;text-transform:uppercase}
+.rdot{cursor:pointer;transition:opacity var(--slow)}
+.rdot circle.m{fill:var(--surface);stroke:var(--ink);stroke-width:1.5;transition:fill var(--slow),r var(--slow)}
+.rdot.on circle.m{fill:var(--mark)}
+.rdot.dim{opacity:.22}
+.rdot .halo{fill:none;stroke:var(--ink);stroke-width:1.5;opacity:0}
+.rdot.sel .halo{opacity:1}
+.rdot:hover circle.m{fill:var(--mark)}
+.rdot:focus{outline:none}
+.rdot:focus-visible .halo{opacity:1;stroke-dasharray:3 3}
+.rlabel{font-size:14px;fill:var(--ink-2);pointer-events:none}
+.rdot.on .rlabel{fill:var(--ink);font-weight:600}
+.thline{fill:none;stroke:var(--ink);stroke-width:1.5;stroke-dasharray:6 6;opacity:.8}
+.grow{animation:pop 900ms cubic-bezier(.2,.7,.2,1) both}
+@keyframes pop{from{opacity:0;transform:scale(.4)}to{opacity:1;transform:none}}
+.rdot{transform-box:fill-box;transform-origin:center}
+.side{position:sticky;top:calc(env(safe-area-inset-top,0px) + 76px);display:grid;gap:14px}
+.side .detail{margin-top:0}
+.elist{display:grid;gap:0;margin-top:4px}
+.elist button{all:unset;cursor:pointer;display:grid;grid-template-columns:14px 1fr;gap:10px;align-items:baseline;padding:9px 0;border-top:1px solid var(--line);font-size:14px}
+.elist button:hover b{text-decoration:underline;text-underline-offset:3px}
+.elist button:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+.elist i{width:9px;height:9px;border-radius:50%;box-shadow:0 0 0 1.5px var(--ink) inset;display:inline-block}
+.elist span{display:block;font-size:12px;color:var(--muted)}
+@media (max-width:860px){.radarwrap{grid-template-columns:1fr}.side{position:static}}
+@media (max-width:640px){.rlabel,.aq,.ringlbl{display:none}.aname{font-size:24px}}
+
+/* HYPE */
+.two{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.colh{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.colh .swatch{width:14px;height:14px;border-radius:50%}
+.fact{border-top:1px solid var(--line);padding-block:14px;display:grid;grid-template-columns:96px 1fr;gap:14px;align-items:baseline}
+.fact:first-of-type{border-top:0;padding-top:4px}
+.big{font-size:34px;font-weight:800;letter-spacing:-.03em;line-height:1}
+.fact p{font-size:15px}
+.fact small{display:block;font-size:12px;color:var(--muted);margin-top:4px}
+.note{font-size:14px;color:var(--ink-2);margin-top:14px}
+
+/* charts */
+.chart{width:100%;height:auto;display:block;overflow:visible}
+#jobschart,#hypechart{max-width:820px}
+.chart text{font-family:var(--sans);fill:var(--ink-2)}
+.chart .axis{stroke:var(--line)}
+.chart .tick{font-size:12px;fill:var(--muted)}
+.tip{position:fixed;z-index:20;pointer-events:none;background:var(--ink);color:var(--bg);font-size:13px;line-height:1.4;padding:8px 10px;border-radius:8px;max-width:240px;opacity:0;transition:opacity 150ms}
+.tip b{font-weight:700}
+
+/* LEDGER */
+.ledger{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:14px;align-items:start}
+.card h3{font-size:22px;font-weight:700;margin-bottom:12px}
+.bars{display:grid;gap:12px}
+.brow{display:grid;grid-template-columns:1fr;gap:4px;font-size:14px}
+.brow .bl{display:flex;justify-content:space-between;gap:8px}
+.track{height:10px;border-radius:5px;background:var(--surface);overflow:hidden}
+.fill{height:100%;border-radius:5px}
+.crit{margin-top:16px;display:grid;gap:6px;font-size:13px;color:var(--ink-2)}
+
+/* tables */
+.tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:var(--r)}
+table{border-collapse:collapse;width:100%;min-width:720px;font-size:14px}
+th,td{text-align:left;padding:11px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:600;background:var(--surface)}
+tr:last-child td{border-bottom:0}
+
+/* MONTH */
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-bottom:22px}
+.stat{border-top:2px solid var(--ink);padding-top:12px}
+.stat .n{font-size:40px;font-weight:800;letter-spacing:-.03em;line-height:1}
+.stat .t{font-size:14px;color:var(--ink-2);margin-top:6px}
+.list{display:grid;gap:0}
+.li{display:grid;grid-template-columns:110px 1fr;gap:16px;padding-block:12px;border-top:1px solid var(--line);font-size:15px}
+.li span{font-size:13px;color:var(--muted)}
+
+/* SPOTTED */
+.empty{border:1px dashed var(--muted);border-radius:var(--r);padding:28px;display:grid;gap:10px;max-width:720px}
+.pattern{display:grid;gap:6px;padding-block:16px;border-top:1px solid var(--line)}
+.pattern h3{font-size:18px;font-weight:700}
+
+footer{margin-top:56px;padding-block:24px 40px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:13px;color:var(--muted)}
+
+.fade{animation:fade 900ms cubic-bezier(.2,.7,.2,1) both}
+@keyframes fade{from{opacity:.4;transform:translateY(6px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+@media (max-width:860px){
+  .mapgrid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .ledger{grid-template-columns:1fr}
+  .stats{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:560px){
+  .mapgrid,.two{grid-template-columns:1fr}
+  .kv{grid-template-columns:1fr;gap:2px}
+  .kv dd{margin-bottom:8px}
+  .fact{grid-template-columns:76px 1fr}
+  .big{font-size:28px}
+  .li{grid-template-columns:1fr;gap:2px}
+}
+</style>
+</head>
+<body>
+<header class="pad"><div class="wrap top">
+  <div class="brand"><span class="dot" aria-hidden="true"></span>Cognitive ROI Map</div>
+  <div class="meta tnum" id="meta"></div>
+</div></header>
+
+<nav class="switchbar pad" aria-label="Views"><div class="wrap switch" id="switch">
+  <a href="#map">Living map</a>
+  <a href="#hype">Hype or real?</a>
+  <a href="#ledger">AI vs Human Ledger</a>
+  <a href="#jobs">Jobs that need thinking</a>
+  <a href="#month">This month</a>
+  <a href="#spotted">What I spotted</a>
+  <a href="#sources">Sources and licences</a>
+</div></nav>
+
+<main class="pad"><div class="wrap">
+
+<!-- 1 LIVING MAP -->
+<section class="view" id="v-map" data-view="map">
+  <div class="vhead">
+    <span class="label">1 · Living map <span class="real">Real sources</span></span>
+    <h1>Everyone tracks a slice. <span class="em hl">Here they meet.</span></h1>
+    <p>Six areas, one radar. The closer to the centre, the stronger the evidence. Hover to peek, click to read, pick a thread to see one idea cross the areas.</p>
+  </div>
+  <div class="threads" id="threads" role="group" aria-label="Threads"></div>
+  <div class="radarwrap">
+    <div>
+      <div class="rtools">
+        <label for="q" class="label" style="position:absolute;left:-9999px">Search the map</label>
+        <input id="q" class="search" type="search" placeholder="Search: creativity, PwC, novices…" autocomplete="off">
+        <span class="hits tnum" id="hits"></span>
+        <button class="btn" type="button" id="clear">Show all</button>
+      </div>
+      <svg id="radar" viewBox="-130 -10 1060 820" aria-label="Radar of 25 entries in six areas. Closer to the centre means stronger evidence."></svg>
+      <div class="legend" style="margin-top:8px">
+        <span>Centre → edge: experiments, studies, reports, signals</span>
+        <span><i class="sw" style="border-radius:50%;background:var(--mark);box-shadow:0 0 0 1.5px var(--ink) inset"></i>On the selected thread</span>
+      </div>
+    </div>
+    <div class="side">
+      <div class="panel strong detail fade" id="detail" aria-live="polite"></div>
+    </div>
+  </div>
+</section>
+
+<!-- 2 HYPE OR REAL -->
+<section class="view" id="v-hype" data-view="hype" hidden>
+  <div class="vhead">
+    <span class="label">2 · Hype or real?</span>
+    <h1>"AI will replace us." <span class="em hl">What is measured so far?</span></h1>
+    <p>Left: what people expect. Right: what studies measure. The two use different measures, so read them side by side, not as one scale.</p>
+  </div>
+  <div class="two">
+    <div class="panel">
+      <div class="colh"><span class="swatch" style="background:var(--ai)"></span><span class="label">What people expect</span><span class="real">Real</span></div>
+      <div class="fact"><span class="big tnum">53%</span><p>of US adults expect AI to worsen people's ability to think creatively. 16% expect it to improve.<small><a href="https://www.pewresearch.org/science/2025/09/17/how-americans-view-ai-and-its-impact-on-people-and-society/" target="_blank" rel="noopener">Pew Research Center</a>, June 2025, 5,023 adults</small></p></div>
+      <div class="fact"><span class="big tnum">53%</span><p>expect a negative impact on deep thinking about complex subjects. 14% expect a positive one.<small><a href="https://techstrong.ai/features/americans-fear-ai-will-erode-core-human-qualities-survey-says/" target="_blank" rel="noopener">Elon University, Imagining the Digital Future</a>, July 2025, 1,005 adults</small></p></div>
+      <div class="fact"><span class="big tnum">79%</span><p>of US 18-to-28-year-olds say AI makes people lazier.<small><a href="https://fortune.com/2026/01/30/gen-z-believes-ai-making-colleagues-dumb-and-lazy-critical-thinking-wharton-led-survey/" target="_blank" rel="noopener">Wharton, Gallup, Walton Family Foundation</a>, Oct 2025, ~2,500 adults</small></p></div>
+    </div>
+    <div class="panel">
+      <div class="colh"><span class="swatch" style="background:var(--human)"></span><span class="label">What studies measure</span><span class="real">Real</span></div>
+      <div class="fact"><span class="big tnum">25%</span><p>of jobs worldwide are exposed to generative AI. The ILO calls transformation, not replacement, the most likely outcome.<small><a href="https://www.infodocket.com/2025/05/20/new-report-one-in-four-jobs-at-risk-of-being-transformed-by-genai-new-ilo-nask-global-index-shows/" target="_blank" rel="noopener">ILO and NASK global index</a>, 2025</small></p></div>
+      <div class="fact"><span class="big tnum">+14%</span><p>productivity for support agents with an AI assistant; +34% for novices, little change for experienced agents.<small><a href="https://www.nber.org/papers/w31161" target="_blank" rel="noopener">Brynjolfsson, Li, Raymond</a>, QJE 2025, 5,179 agents</small></p></div>
+      <div class="fact"><span class="big tnum">−19 pp</span><p>correct answers when consultants used GPT-4 on a task outside AI's strengths.<small><a href="https://businessdatasolutions.github.io/ai-wiki/sources/2026-04-28-dellacqua-jagged-technological-frontier" target="_blank" rel="noopener">Dell'Acqua et al.</a>, 2023 working paper, 758 consultants</small></p></div>
+    </div>
+  </div>
+  <div class="panel" style="margin-top:14px">
+    <div class="btns" style="justify-content:space-between"><div><div class="ctitle">Monthly tracker: what each new source found</div><div class="csub">Each month, new sources are sorted by what they report: jobs transformed, or jobs replaced.</div></div><span class="sample">Sample data</span></div>
+    <div class="legend" style="margin-bottom:6px"><span><i class="sw" style="background:var(--human)"></i>Transformation</span><span><i class="sw" style="background:var(--ai)"></i>Replacement</span></div>
+    <svg class="chart" id="hypechart" viewBox="0 0 720 260" role="img" aria-label="Sample monthly counts of sources finding transformation or replacement"></svg>
+    <p class="credit">Sample values to show the design. Real counts start with the December 2026 update.</p>
+  </div>
+</section>
+
+<!-- 3 LEDGER -->
+<section class="view" id="v-ledger" data-view="ledger" hidden>
+  <div class="vhead">
+    <span class="label">3 · AI vs Human Ledger</span>
+    <h1>Countries, side by side: <span class="em hl">AI reliance and human capacity.</span></h1>
+    <p>Across: how much work a country hands to AI. Up: measured adult adaptive problem solving. The quadrants describe positions. They don't judge them.</p>
+  </div>
+  <div class="ledger">
+    <div class="panel">
+      <div class="btns" style="justify-content:space-between;margin-bottom:8px"><div class="ctitle">Where countries sit</div><span class="sample">Sample data</span></div>
+      <svg class="chart" id="scatter" viewBox="0 0 640 470" role="img" aria-label="Sample scatter of countries by AI reliance and adaptive problem solving"></svg>
+      <p class="credit">Placeholder countries and values. Real version: AI use (Microsoft, Anthropic), firm AI adoption (OECD, Eurostat), jobs exposed (ILO); adaptive problem solving (OECD PIAAC 2023, 31 countries).</p>
+    </div>
+    <div class="panel card fade" id="ccard"></div>
+  </div>
+</section>
+
+<!-- 4 JOBS -->
+<section class="view" id="v-jobs" data-view="jobs" hidden>
+  <div class="vhead">
+    <span class="label">4 · Jobs that need thinking</span>
+    <h1>Which jobs still <span class="em hl">rely on human thinking?</span></h1>
+    <p>For each job group: the share of jobs where ideation, judgment or adaptability is rated highly important, next to the share highly exposed to AI.</p>
+  </div>
+  <div class="panel">
+    <div class="btns" style="justify-content:space-between;margin-bottom:6px"><div class="ctitle">Human thinking vs AI exposure, by job group</div><span class="sample">Sample data</span></div>
+    <div class="btns" style="margin:6px 0 10px" role="group" aria-label="Sort">
+      <button class="btn" type="button" id="sort-human" aria-pressed="true">Sort by human thinking</button>
+      <button class="btn" type="button" id="sort-ai" aria-pressed="false">Sort by AI exposure</button>
+    </div>
+    <div class="legend" style="margin-bottom:6px"><span><i class="sw" style="background:var(--human)"></i>Relies on human thinking</span><span><i class="sw" style="background:var(--ai)"></i>Highly exposed to AI</span></div>
+    <svg class="chart" id="jobschart" viewBox="0 0 720 470" role="img" aria-label="Sample shares by job group"></svg>
+    <p class="credit">Job groups follow the international ISCO classification. Values are placeholders. Real version: O*NET® 31.0 Database (USDOL/ETA, CC BY 4.0) for ability ratings; ILO and NASK index for exposure.</p>
+  </div>
+</section>
+
+<!-- 5 THIS MONTH -->
+<section class="view" id="v-month" data-view="month" hidden>
+  <div class="vhead">
+    <span class="label">This month · November 2026 <span class="real">Real</span></span>
+    <h1>The first edition: <span class="em hl">25 entries, 2 threads.</span></h1>
+    <p>Every month, new sources are added, threads form or break, and figures refresh when their source does.</p>
+  </div>
+  <div class="stats tnum" id="stats"></div>
+  <div class="panel"><div class="ctitle" style="margin-bottom:6px">Added this month</div><p class="csub">PwC and Stanford each appear twice: one entry per finding.</p><div class="list" id="addlist"></div></div>
+</section>
+
+<!-- 6 SPOTTED -->
+<section class="view" id="v-spotted" data-view="spotted" hidden>
+  <div class="vhead">
+    <span class="label">What I spotted</span>
+    <h1>Conclusions come <span class="em hl">after the data.</span></h1>
+  </div>
+  <div class="empty">
+    <span class="label">Anna Ernst · in progress</span>
+    <p style="font-size:17px">My observations will appear here once the first month of data is reviewed.</p>
+    <p class="muted" style="font-size:14px">Below are the patterns the data shows so far. They are not conclusions.</p>
+  </div>
+  <div id="patterns" style="margin-top:20px;max-width:760px"></div>
+</section>
+
+<!-- 7 SOURCES -->
+<section class="view" id="v-sources" data-view="sources" hidden>
+  <div class="vhead">
+    <span class="label">Sources and licences</span>
+    <h1>Built on others' work, <span class="em hl">credited every time.</span></h1>
+    <p>Figures are quoted with their source and link. Charts are redrawn, never copied. Our aggregated dataset will be released under CC BY 4.0.</p>
+  </div>
+  <div class="tablewrap"><table><thead><tr><th>Source</th><th>Area</th><th>Year</th><th>How it is used</th><th>Terms</th></tr></thead><tbody id="srcbody"></tbody></table></div>
+  <p class="threadnote" style="margin-top:16px">Listed here and want a correction? Write to <span>[contact address to be added]</span>.</p>
+</section>
+
+</div></main>
+
+<footer class="pad"><div class="wrap" style="display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;width:100%">
+  <span>Cognitive ROI Map · an independent aggregation of public sources · design preview</span>
+  <span class="tnum">Last checked 6 Nov 2026 · updated monthly</span>
+</div></footer>
+<div class="tip" id="tip" role="tooltip"></div>
+
+<script>
+const AREAS=[
+ {id:"mind",name:"Mind",q:"What happens to human thinking?"},
+ {id:"machine",name:"Machine",q:"What can AI do?"},
+ {id:"work",name:"Work",q:"How do firms and workers change?"},
+ {id:"money",name:"Money",q:"Where does value go?"},
+ {id:"ventures",name:"Ventures",q:"Who builds for it?"},
+ {id:"signals",name:"Signals",q:"What do people expect?"}
+];
+const SIZE={exp:28,obs:21,rep:16,sig:12};
+const TYPE={exp:"Experiment",obs:"Observational study",rep:"Report or dataset",sig:"Signal"};
+const DOTS=[
+ {id:"gerlich",a:"mind",k:"obs",title:"AI Tools in Society",by:"Gerlich, Societies",y:2025,f:"Among 666 people, more AI use correlated with lower critical-thinking scores, through cognitive offloading. Correlational.",u:"https://www.mdpi.com/2075-4698/15/1/6"},
+ {id:"lee",a:"mind",k:"obs",title:"The Impact of Generative AI on Critical Thinking",by:"Lee et al., CHI 2025",y:2025,f:"In a survey of 319 knowledge workers, confidence in AI was associated with less critical-thinking effort; people less sure of a task scrutinized AI answers less.",u:"https://www.theregister.com/2025/02/11/microsoft_study_ai_critical_thinking/"},
+ {id:"budzyn",a:"mind",k:"obs",title:"Endoscopist skill after AI exposure",by:"Budzyń et al., Lancet Gastroenterology & Hepatology",y:2025,f:"In one observational study of 19 endoscopists, detection without AI fell from 28.4% to 22.4% after AI was introduced. Other factors may have played a role.",u:"https://ascopost.com/news/august-2025/routine-ai-assistance-may-lead-to-loss-of-skills-in-endoscopists-study-shows/"},
+ {id:"lu",a:"mind",k:"exp",title:"Generative AI and workplace creativity",by:"Lu et al., Journal of Applied Psychology",y:2025,f:"In a field experiment with 250 employees, ChatGPT raised creativity ratings only for those with strong metacognitive strategies.",u:"https://mitsloan.mit.edu/press/does-generative-ai-actually-enhance-creativity-workplace"},
+ {id:"apa",a:"mind",k:"rep",title:"How AI is reshaping human skills and thinking",by:"APA Monitor on Psychology",y:2026,f:"Heavy reliance can reduce skills in some studies; structured, deliberate use may preserve them.",u:"https://www.apa.org/monitor/2026/07-08/ai-job-skills-thinking"},
+ {id:"oecd-aici",a:"machine",k:"rep",title:"OECD AI Capability Indicators",by:"OECD",y:2025,f:"Rates AI against human abilities on a five-level scale; reliable tests are still missing at advanced levels.",u:"https://www.oecd.org/en/publications/introducing-the-oecd-ai-capability-indicators_be745f04-en/full-report/component-5.html"},
+ {id:"stanford",a:"machine",k:"rep",title:"AI Index 2026: technical performance",by:"Stanford HAI",y:2026,f:"AI exceeds the human baseline on several benchmarks and stays below it on others, e.g. OSWorld 66.3% vs 72.35%.",u:"https://hai.stanford.edu/ai-index/2026-ai-index-report"},
+ {id:"globaia",a:"machine",k:"rep",title:"AI capability dashboard",by:"GLOBAÏA",y:2026,f:"Tracks AI capability and the length of tasks AI agents can complete, updated monthly.",u:"https://globaia.org/ai/risks/dashboard/"},
+ {id:"atlas",a:"machine",k:"rep",title:"Atlas of Human-AI Interaction",by:"Archiwaranguprok et al., arXiv",y:2025,f:"Maps findings from more than 1,000 human–AI interaction papers.",u:"https://arxiv.org/abs/2509.25499v1"},
+ {id:"dellacqua",a:"work",k:"exp",title:"Navigating the Jagged Technological Frontier",by:"Dell'Acqua et al., working paper",y:2023,f:"758 BCG consultants: about 40% higher quality on tasks inside AI's frontier; about 19 points less likely to be correct outside it, with answers rated more coherent.",u:"https://businessdatasolutions.github.io/ai-wiki/sources/2026-04-28-dellacqua-jagged-technological-frontier"},
+ {id:"noyzhang",a:"work",k:"exp",title:"Productivity effects of generative AI",by:"Noy and Zhang, Science",y:2023,f:"453 professionals: 40% less time, 18% higher quality; lower performers gained more.",u:"https://economics.mit.edu/news/study-finds-chatgpt-boosts-worker-productivity-some-writing-tasks"},
+ {id:"brynjolfsson",a:"work",k:"exp",title:"Generative AI at Work",by:"Brynjolfsson, Li, Raymond, QJE",y:2025,f:"5,179 support agents: +14% productivity on average, +34% for novices, little change for experienced agents.",u:"https://www.nber.org/papers/w31161"},
+ {id:"pwc-work",a:"work",k:"rep",title:"Global AI Jobs Barometer 2026: skills",by:"PwC",y:2026,f:"1bn+ job ads in 27 countries: more weight on judgement, creativity and leadership; AI-exposed entry roles seven times more likely to require them.",u:"https://pwc.com/gx/en/news-room/press-releases/2026/pwc-2026-ai-jobs-barometer.html"},
+ {id:"wef",a:"work",k:"rep",title:"Future of Jobs Report 2025",by:"World Economic Forum",y:2025,f:"Employer survey across 55 economies on core and rising skills.",u:"https://weforum.org/publications/the-future-of-jobs-report-2025/in-full/appendix-6d9e5fce68"},
+ {id:"oecd-skills",a:"work",k:"rep",title:"Skills in the AI age",by:"OECD",y:2026,f:"Partly verified: complementary skills matter; jobs exposed to AI are not necessarily those that disappear.",u:"https://www.oecd.org/content/dam/oecd/en/publications/reports/2026/07/skills-in-the-ai-age_e8d8c1e6/972bd15e-en.pdf"},
+ {id:"cedefop",a:"work",k:"rep",title:"Skills in online job ads",by:"Cedefop",y:2026,f:"Skills demanded in job ads across 28 European countries.",u:"https://www.cedefop.europa.eu/tools/skills-intelligence/skills-online-job-advertisements"},
+ {id:"pwc-money",a:"money",k:"rep",title:"Global AI Jobs Barometer 2026: productivity",by:"PwC",y:2026,f:"AI-exposed sectors: 34% productivity growth 2018–2025 vs 24% for the least exposed; AI-skill wage premium 62%.",u:"https://pwc.com/gx/en/news-room/press-releases/2026/pwc-2026-ai-jobs-barometer.html"},
+ {id:"stanford-inv",a:"money",k:"rep",title:"AI Index 2026: investment",by:"Stanford HAI",y:2026,f:"2025 AI investment: US $285.88bn, Europe $20.92bn, China $12.41bn.",u:"https://hai.stanford.edu/ai-index/2026-ai-index-report"},
+ {id:"msft",a:"money",k:"rep",title:"AI Diffusion Report",by:"Microsoft",y:2026,f:"Generative AI use by country, from Microsoft's own data.",u:"https://blogs.microsoft.com/on-the-issues/2026/09/21/the-continued-state-of-global-ai-diffusion-in-2026/"},
+ {id:"anthropic",a:"money",k:"rep",title:"Economic Index: geography",by:"Anthropic",y:2025,f:"AI use by country; countries with higher use per person tend to use AI more collaboratively, less for automation.",u:"https://www.anthropic.com/research/economic-index-geography"},
+ {id:"humans",a:"ventures",k:"sig",title:"Humans& seed round",by:"Crunchbase News",y:2026,f:"$480m seed at a $4.48bn valuation for a lab building AI for human–AI collaboration.",u:"https://news.crunchbase.com/ai/humans-raises-huge-seed-round-unicorn-valuation/"},
+ {id:"rapidata",a:"ventures",k:"sig",title:"Rapidata seed round",by:"The Next Web",y:2026,f:"€7.2m seed for a network of people who judge AI outputs.",u:"https://thenextweb.com/news/zurichs-rapidata-raises-e7-2m-to-build-a-real-time-human-feedback-network-for-ai"},
+ {id:"pew",a:"signals",k:"sig",title:"How Americans view AI",by:"Pew Research Center",y:2025,f:"5,023 US adults: 53% expect AI to worsen creative thinking, 16% expect improvement.",u:"https://www.pewresearch.org/science/2025/09/17/how-americans-view-ai-and-its-impact-on-people-and-society/"},
+ {id:"elon",a:"signals",k:"sig",title:"AI and core human qualities",by:"Elon University",y:2025,f:"1,005 US adults: 53% expect a negative impact on deep thinking, 14% positive.",u:"https://techstrong.ai/features/americans-fear-ai-will-erode-core-human-qualities-survey-says/"},
+ {id:"wharton",a:"signals",k:"sig",title:"Gen Z and AI",by:"Wharton, Gallup, Walton Family Foundation",y:2026,f:"~2,500 US 18-to-28-year-olds: 79% say AI makes people lazier; 62% worry it makes people less smart.",u:"https://fortune.com/2026/01/30/gen-z-believes-ai-making-colleagues-dumb-and-lazy-critical-thinking-wharton-led-survey/"}
+];
+const THREADS=[
+ {id:"frontier",name:"AI's frontier is jagged, and the output hides it",kind:"Thread",dots:["dellacqua","stanford","oecd-aici","lee"],text:"Inside AI's strengths, quality rises. Outside them, answers get less correct while looking more convincing. Benchmarks show the same unevenness, and confidence in AI goes with less checking."},
+ {id:"howyouthink",name:"How people think with AI decides what they get",kind:"Thread",dots:["lu","gerlich","dellacqua","humans"],text:"Creativity gains appear only with strong metacognition; heavier offloading goes with weaker critical thinking; over-reliance lowered accuracy. Large funding goes to human–AI collaboration."},
+ {id:"novices",name:"AI lifts novices most, but novices check it least",kind:"Weak signal",dots:["brynjolfsson","noyzhang","lee","pwc-work"],text:"Novices and low performers gain most, yet people less sure of a task scrutinize AI least. Two areas so far (Work, Mind)."},
+ {id:"fear",name:"Fear is broad, measured loss is narrow",kind:"Weak signal",dots:["pew","elon","wharton","budzyn"],text:"Majorities expect AI to weaken thinking; measured skill loss rests on few, mostly observational studies. Two areas so far (Signals, Mind)."},
+ {id:"bought",name:"Human judgment is bought as an input to AI",kind:"Weak signal",dots:["rapidata","pwc-work"],text:"Money flows to networks of human judges for AI, and employers weight judgement more. Two areas so far (Ventures, Work)."}
+];
+const byId=Object.fromEntries(DOTS.map(d=>[d.id,d]));
+const $=s=>document.querySelector(s);
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const css=n=>getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+/* tooltip */
+const tip=$("#tip");
+function showTip(html,e){tip.innerHTML=html;tip.style.opacity=1;moveTip(e)}
+function moveTip(e){const x=Math.min(e.clientX+14,innerWidth-250),y=e.clientY+14;tip.style.left=x+"px";tip.style.top=y+"px"}
+function hideTip(){tip.style.opacity=0}
+
+/* ROUTER */
+const VIEWS=["map","hype","ledger","jobs","month","spotted","sources"];
+function route(){
+  const v=VIEWS.includes(location.hash.slice(1))?location.hash.slice(1):"map";
+  document.querySelectorAll("[data-view]").forEach(s=>s.hidden=s.dataset.view!==v);
+  document.querySelectorAll("#switch a").forEach(a=>{if(a.getAttribute("href")==="#"+v)a.setAttribute("aria-current","page");else a.removeAttribute("aria-current")});
+  if(v==="map")requestAnimationFrame(drawThread);
+  window.scrollTo({top:0,behavior:"auto"});
+}
+addEventListener("hashchange",route);
+
+/* MAP */
+let thread=null, selected="dellacqua";
+function renderThreads(){
+  $("#threads").innerHTML=THREADS.map(t=>`<button type="button" class="thr ${t.kind==="Weak signal"?"weak":""}" data-t="${t.id}" aria-pressed="${thread===t.id}"><span>${t.kind} · ${new Set(t.dots.map(d=>byId[d].a)).size} areas</span><b>${esc(t.name)}</b></button>`).join("");
+  document.querySelectorAll(".thr").forEach(b=>b.onclick=()=>{thread=thread===b.dataset.t?null:b.dataset.t;renderThreads();paint();drawThread();renderDetail()});
+}
+const SHORT={gerlich:"Gerlich",lee:"Lee et al.",budzyn:"Budzyń et al.",lu:"Lu et al.",apa:"APA Monitor","oecd-aici":"OECD capability",stanford:"Stanford AI Index",globaia:"GLOBAÏA",atlas:"Atlas of H-AI",dellacqua:"Dell'Acqua et al.",noyzhang:"Noy & Zhang",brynjolfsson:"Brynjolfsson et al.","pwc-work":"PwC skills",wef:"WEF",  "oecd-skills":"OECD skills",cedefop:"Cedefop","pwc-money":"PwC productivity","stanford-inv":"Stanford investment",msft:"Microsoft",anthropic:"Anthropic",humans:"Humans&",rapidata:"Rapidata",pew:"Pew",elon:"Elon Univ.",wharton:"Wharton"};
+const C=400, BAND={exp:[78,150],obs:[150,222],rep:[222,294],sig:[294,346]}, RAD={exp:11,obs:9,rep:7.5,sig:6.5};
+const KORDER=["exp","obs","rep","sig"];
+let focusArea=null, query="";
+const POS={};
+const pol=(r,deg)=>{const t=(deg-90)*Math.PI/180;return [C+r*Math.cos(t),C+r*Math.sin(t)]};
+function wedge(r0,r1,a0,a1){const [x0,y0]=pol(r1,a0),[x1,y1]=pol(r1,a1),[x2,y2]=pol(r0,a1),[x3,y3]=pol(r0,a0);return `M${x0} ${y0}A${r1} ${r1} 0 0 1 ${x1} ${y1}L${x2} ${y2}A${r0} ${r0} 0 0 0 ${x3} ${y3}Z`}
+function renderMap(){
+  const span=360/AREAS.length; let g="";
+  AREAS.forEach((ar,i)=>{g+=`<path class="sector" data-area="${ar.id}" d="${wedge(78,346,i*span,(i+1)*span)}"/>`});
+  [78,150,222,294,346].forEach(r=>g+=`<circle class="ring" cx="${C}" cy="${C}" r="${r}"/>`);
+  AREAS.forEach((ar,i)=>{const [x0,y0]=pol(78,i*span),[x1,y1]=pol(346,i*span);g+=`<line class="spoke" x1="${x0}" y1="${y0}" x2="${x1}" y2="${y1}"/>`});
+  [["Experiments",114],["Studies",186],["Reports",258],["Signals",320]].forEach(([t,r])=>{const [x,y]=pol(r,3);g+=`<text class="ringlbl" x="${x+2}" y="${y+4}">${t}</text>`});
+  AREAS.forEach((ar,i)=>{
+    const mid=(i+.5)*span,[x,y]=pol(372,mid),anchor=x>C+20?"start":x<C-20?"end":"middle",dy=y<C?-6:16;
+    const n=DOTS.filter(d=>d.a===ar.id).length;
+    g+=`<g data-area="${ar.id}" class="alabel" style="cursor:pointer"><text class="aname" x="${x}" y="${y+dy}" text-anchor="${anchor}">${ar.name} <tspan font-weight="400" fill="var(--muted)" font-size="14">${n}</tspan></text><text class="aq" x="${x}" y="${y+dy+19}" text-anchor="${anchor}">${ar.q}</text></g>`;
+  });
+  g+=`<g id="threadlayer"></g>`;
+  let k=0;
+  AREAS.forEach((ar,i)=>{
+    KORDER.forEach(kind=>{
+      const ds=DOTS.filter(d=>d.a===ar.id&&d.k===kind), n=ds.length, pad=9, a0=i*span+pad, a1=(i+1)*span-pad;
+      ds.forEach((d,j)=>{
+        const ang=a0+(j+.5)*(a1-a0)/n, [b0,b1]=BAND[kind], r=n===1?(b0+b1)/2:(n===2?(b0+b1)/2+(j?14:-14):b0+10+(b1-b0-20)*(n===3?j/2:(j%2?.8:.2))), [x,y]=pol(r,ang);
+        POS[d.id]=[x,y,ang];
+        g+=`<g class="rdot grow" data-id="${d.id}" tabindex="0" role="button" aria-label="${esc(d.title)}, ${TYPE[d.k]}" style="animation-delay:${reduce?0:120+k*45}ms">
+          <circle cx="${x}" cy="${y}" r="18" fill="transparent"/>
+          <circle class="halo" cx="${x}" cy="${y}" r="${RAD[kind]+6}"/>
+          <circle class="m" cx="${x}" cy="${y}" r="${RAD[kind]}"/>
+          <text class="rlabel" x="${x}" y="${y+RAD[kind]+16}" text-anchor="middle">${esc(SHORT[d.id]||d.by)}</text></g>`;
+        k++;
+      });
+    });
+  });
+  g+=`<g id="centre" style="cursor:pointer" tabindex="0" role="button" aria-label="Show all"><circle cx="${C}" cy="${C}" r="70" fill="var(--bg)" stroke="var(--ink)" stroke-width="1.5"/>
+    <text x="${C}" y="${C+6}" text-anchor="middle" font-size="40" font-weight="800" fill="var(--ink)" letter-spacing="-1">${DOTS.length}</text>
+    <text x="${C}" y="${C+28}" text-anchor="middle" font-size="12" fill="var(--muted)">entries · Nov 2026</text></g>`;
+  const svg=$("#radar"); svg.innerHTML=g;
+  svg.querySelectorAll(".rdot").forEach(n=>{
+    const d=byId[n.dataset.id];
+    const pick=()=>{selected=d.id;focusArea=null;paint();renderDetail()};
+    n.addEventListener("click",pick);
+    n.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();pick()}});
+    n.addEventListener("mouseenter",e=>showTip(`<b>${esc(d.title)}</b><br>${esc(d.by)} · ${d.y}<br>${TYPE[d.k]}`,e));
+    n.addEventListener("mousemove",moveTip); n.addEventListener("mouseleave",hideTip);
+  });
+  svg.querySelectorAll("[data-area]").forEach(n=>n.addEventListener("click",()=>{focusArea=focusArea===n.dataset.area?null:n.dataset.area;thread=null;renderThreads();paint();drawThread();renderDetail()}));
+  const reset=()=>{thread=null;focusArea=null;query="";$("#q").value="";renderThreads();paint();drawThread();renderDetail()};
+  $("#centre").addEventListener("click",reset);
+  $("#centre").addEventListener("keydown",e=>{if(e.key==="Enter"){reset()}});
+  $("#clear").onclick=reset;
+  $("#q").oninput=e=>{query=e.target.value.trim().toLowerCase();paint()};
+  paint();
+}
+function matches(d){if(!query)return true;return [d.title,d.by,d.f,SHORT[d.id]||"",AREAS.find(a=>a.id===d.a).name].join(" ").toLowerCase().includes(query)}
+function paint(){
+  const t=THREADS.find(x=>x.id===thread); let hits=0;
+  document.querySelectorAll(".rdot").forEach(n=>{
+    const d=byId[n.dataset.id], on=t&&t.dots.includes(d.id), m=matches(d);
+    if(m)hits++;
+    const dim=(t&&!on)||(focusArea&&d.a!==focusArea)||!m;
+    n.classList.toggle("on",!!on); n.classList.toggle("dim",!!dim); n.classList.toggle("sel",d.id===selected&&!focusArea);
+  });
+  document.querySelectorAll(".sector").forEach(s=>s.classList.toggle("focus",s.dataset.area===focusArea));
+  $("#hits").textContent=query?`${hits} ${hits===1?"match":"matches"}`:"";
+}
+function drawThread(){
+  const layer=$("#threadlayer"); if(!layer)return;
+  const t=THREADS.find(x=>x.id===thread); if(!t){layer.innerHTML="";return}
+  const pts=t.dots.map(id=>POS[id]).sort((a,b)=>a[2]-b[2]);
+  let p=`M${pts[0][0]} ${pts[0][1]}`;
+  for(let i=1;i<pts.length;i++){const [x0,y0]=pts[i-1],[x1,y1]=pts[i];const mx=(x0+x1)/2,my=(y0+y1)/2;p+=` Q${C+(mx-C)*.75} ${C+(my-C)*.75} ${x1} ${y1}`}
+  layer.innerHTML=`<path class="thline" d="${p}"><animate attributeName="stroke-dashoffset" from="120" to="0" dur="${reduce?"0.01s":"1.6s"}" fill="freeze"/></path>`;
+}
+function renderDetail(){
+  if(focusArea){
+    const ar=AREAS.find(a=>a.id===focusArea), ds=DOTS.filter(d=>d.a===ar.id).sort((p,q)=>KORDER.indexOf(p.k)-KORDER.indexOf(q.k));
+    const el=$("#detail"); el.classList.remove("fade"); void el.offsetWidth; el.classList.add("fade");
+    el.innerHTML=`<span class="label">Area · ${ds.length} entries</span><h3>${ar.name}</h3><p class="muted">${ar.q}</p>
+      <div class="elist">${ds.map(d=>`<button type="button" data-go="${d.id}"><i style="width:${RAD[d.k]+2}px;height:${RAD[d.k]+2}px"></i><div><b>${esc(d.title)}</b><span>${esc(d.by)} · ${d.y} · ${TYPE[d.k]}</span></div></button>`).join("")}</div>`;
+    el.querySelectorAll("[data-go]").forEach(b=>b.onclick=()=>{selected=b.dataset.go;focusArea=null;paint();renderDetail()});
+    return;
+  }
+  const d=byId[selected], t=THREADS.find(x=>x.id===thread), area=AREAS.find(a=>a.id===d.a);
+  const member=THREADS.filter(x=>x.dots.includes(d.id));
+  const el=$("#detail"); el.classList.remove("fade"); void el.offsetWidth; el.classList.add("fade");
+  el.innerHTML=`${t?`<div class="threadnote"><b>${t.kind}: ${esc(t.name)}.</b> ${esc(t.text)}</div>`:""}
+   <span class="label">${area.name} · ${TYPE[d.k]} · ${d.y}</span>
+   <h3>${esc(d.title)}</h3>
+   <dl class="kv"><dt>Source</dt><dd><a href="${d.u}" target="_blank" rel="noopener">${esc(d.by)}</a></dd>
+   <dt>What it found</dt><dd>${esc(d.f)}</dd>
+   <dt>Part of</dt><dd>${member.length?member.map(m=>`<span class="pill">${esc(m.name)}</span>`).join(""):'<span class="pill">No thread yet</span>'}</dd></dl>`;
+}
+
+/* HYPE chart (sample) */
+function hypeChart(){
+  const months=["Jun","Jul","Aug","Sep","Oct","Nov"], tr=[3,5,4,6,7,9], rp=[1,2,1,2,2,3];
+  const W=720,H=260,L=40,R=10,T=14,B=34,max=10,svg=$("#hypechart");
+  const x=i=>L+i*(W-L-R)/months.length, bw=(W-L-R)/months.length, y=v=>T+(H-T-B)*(1-v/max);
+  let g="";
+  [0,5,10].forEach(v=>g+=`<line class="axis" x1="${L}" x2="${W-R}" y1="${y(v)}" y2="${y(v)}"/><text class="tick" x="${L-8}" y="${y(v)+4}" text-anchor="end">${v}</text>`);
+  months.forEach((m,i)=>{
+    const w=(bw-28)/2, x0=x(i)+12;
+    g+=`<rect x="${x0}" y="${y(tr[i])}" width="${w}" height="${y(0)-y(tr[i])}" rx="4" fill="var(--human)" data-tip="<b>${m} (sample)</b><br>Transformation: ${tr[i]}"/>`;
+    g+=`<rect x="${x0+w+2}" y="${y(rp[i])}" width="${w}" height="${y(0)-y(rp[i])}" rx="4" fill="var(--ai)" data-tip="<b>${m} (sample)</b><br>Replacement: ${rp[i]}"/>`;
+    g+=`<text class="tick" x="${x(i)+bw/2}" y="${H-10}" text-anchor="middle">${m}</text>`;
+  });
+  svg.innerHTML=g; bindTips(svg);
+}
+function bindTips(svg){svg.querySelectorAll("[data-tip]").forEach(n=>{n.style.cursor="default";n.addEventListener("mouseenter",e=>showTip(n.dataset.tip,e));n.addEventListener("mousemove",moveTip);n.addEventListener("mouseleave",hideTip)})}
+
+/* LEDGER (sample) */
+const COUNTRIES="ABCDEFGHIJKLMNOP".split("").map((c,i)=>({id:c,name:"Country "+c,ai:[22,35,48,61,72,30,55,80,40,66,18,52,75,44,58,85][i],aps:[262,250,241,268,255,233,247,259,228,272,245,264,238,253,231,249][i],firms:[12,18,25,31,36,15,27,40,20,33,10,26,38,22,29,42][i],exposed:[24,28,31,35,34,22,30,37,26,36,20,32,33,27,29,38][i]}));
+let ctry="J";
+function scatter(){
+  const W=640,H=470,L=56,R=20,T=20,B=56,svg=$("#scatter");
+  const x=v=>L+(W-L-R)*v/100, y=v=>T+(H-T-B)*(1-(v-220)/(280-220));
+  const mx=50, my=250;
+  let g=`<rect x="${x(mx)}" y="${T}" width="${x(100)-x(mx)}" height="${y(my)-T}" fill="var(--surface)"/>`;
+  [0,25,50,75,100].forEach(v=>g+=`<line class="axis" x1="${x(v)}" x2="${x(v)}" y1="${T}" y2="${H-B}"/><text class="tick" x="${x(v)}" y="${H-B+18}" text-anchor="middle">${v}</text>`);
+  [220,240,260,280].forEach(v=>g+=`<line class="axis" x1="${L}" x2="${W-R}" y1="${y(v)}" y2="${y(v)}"/><text class="tick" x="${L-8}" y="${y(v)+4}" text-anchor="end">${v}</text>`);
+  g+=`<line x1="${x(mx)}" x2="${x(mx)}" y1="${T}" y2="${H-B}" stroke="var(--muted)" stroke-dasharray="4 4"/><line x1="${L}" x2="${W-R}" y1="${y(my)}" y2="${y(my)}" stroke="var(--muted)" stroke-dasharray="4 4"/>`;
+  g+=`<text x="${W-R-6}" y="${T+16}" text-anchor="end" font-size="12" fill="var(--muted)">More AI · stronger adaptive skills</text>`;
+  g+=`<text x="${L+6}" y="${T+16}" font-size="12" fill="var(--muted)">Less AI · stronger adaptive skills</text>`;
+  g+=`<text x="${W-R-6}" y="${H-B-8}" text-anchor="end" font-size="12" fill="var(--muted)">More AI · weaker adaptive skills</text>`;
+  g+=`<text x="${L+6}" y="${H-B-8}" font-size="12" fill="var(--muted)">Less AI · weaker adaptive skills</text>`;
+  g+=`<text x="${(L+W-R)/2}" y="${H-12}" text-anchor="middle" font-size="13" fill="var(--ink-2)">AI reliance (sample index, 0–100)</text>`;
+  g+=`<text transform="translate(16 ${(T+H-B)/2}) rotate(-90)" text-anchor="middle" font-size="13" fill="var(--ink-2)">Adaptive problem solving (score)</text>`;
+  COUNTRIES.forEach(c=>{
+    const s=c.id===ctry;
+    g+=`<circle cx="${x(c.ai)}" cy="${y(c.aps)}" r="${s?9:7}" fill="${s?"var(--mark)":"var(--human)"}" stroke="${s?"var(--ink)":"var(--bg)"}" stroke-width="2" data-c="${c.id}" tabindex="0" role="button" aria-label="${c.name}" data-tip="<b>${c.name} (sample)</b><br>AI reliance ${c.ai} · adaptive problem solving ${c.aps}"/>`;
+    g+=`<circle cx="${x(c.ai)}" cy="${y(c.aps)}" r="16" fill="transparent" data-c="${c.id}" data-tip="<b>${c.name} (sample)</b><br>AI reliance ${c.ai} · adaptive problem solving ${c.aps}"/>`;
+    if(s)g+=`<text x="${x(c.ai)+13}" y="${y(c.aps)+4}" font-size="13" font-weight="600" fill="var(--ink)">${c.name}</text>`;
+  });
+  svg.innerHTML=g; bindTips(svg);
+  svg.querySelectorAll("[data-c]").forEach(n=>{n.style.cursor="pointer";const pick=()=>{ctry=n.dataset.c;scatter();card()};n.addEventListener("click",pick);n.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();pick()}})});
+}
+function card(){
+  const c=COUNTRIES.find(k=>k.id===ctry), el=$("#ccard"); el.classList.remove("fade"); void el.offsetWidth; el.classList.add("fade");
+  const row=(label,val,max,col,unit)=>`<div class="brow"><div class="bl"><span>${label}</span><b class="tnum">${val}${unit}</b></div><div class="track"><div class="fill" style="width:${val/max*100}%;background:${col}"></div></div></div>`;
+  el.innerHTML=`<div class="btns" style="justify-content:space-between;margin-bottom:6px"><span class="label">Country card</span><span class="sample">Sample</span></div><h3>${c.name}</h3>
+   <div class="bars">
+    <span class="label" style="margin-top:4px">AI side</span>
+    ${row("AI reliance index",c.ai,100,"var(--ai)","")}
+    ${row("Firms using AI",c.firms,100,"var(--ai)","%")}
+    ${row("Jobs exposed to generative AI",c.exposed,100,"var(--ai)","%")}
+    <span class="label" style="margin-top:8px">Human side</span>
+    ${row("Adaptive problem solving",c.aps,350,"var(--human)","")}
+   </div>
+   <div class="crit"><span>Real sources per criterion are listed under Sources and licences.</span><span>Productivity is shown separately, never inside the comparison.</span></div>`;
+}
+
+/* JOBS (sample) */
+const JOBS=[
+ {g:"Managers",h:78,a:30},{g:"Professionals",h:72,a:41},{g:"Technicians and associate professionals",h:55,a:38},
+ {g:"Clerical support workers",h:22,a:58},{g:"Service and sales workers",h:34,a:20},{g:"Skilled agricultural workers",h:28,a:6},
+ {g:"Craft and trades workers",h:31,a:9},{g:"Plant and machine operators",h:18,a:12},{g:"Elementary occupations",h:12,a:7}
+];
+let jobSort="h";
+function jobsChart(){
+  const data=[...JOBS].sort((p,q)=>q[jobSort]-p[jobSort]);
+  const W=720,L=250,R=46,T=8,row=50,H=T+row*data.length+16,svg=$("#jobschart");
+  svg.setAttribute("viewBox",`0 0 ${W} ${H}`);
+  const x=v=>L+(W-L-R)*v/100;
+  let g="";
+  [0,50,100].forEach(v=>g+=`<line class="axis" x1="${x(v)}" x2="${x(v)}" y1="${T}" y2="${H-14}"/><text class="tick" x="${x(v)}" y="${H}" text-anchor="middle">${v}%</text>`);
+  data.forEach((d,i)=>{
+    const y0=T+i*row+8;
+    g+=`<text x="${L-12}" y="${y0+17}" text-anchor="end" font-size="13" fill="var(--ink)">${d.g.length>32?d.g.slice(0,30)+"…":d.g}</text>`;
+    g+=`<rect x="${x(0)}" y="${y0}" width="${x(d.h)-x(0)}" height="14" rx="4" fill="var(--human)" data-tip="<b>${d.g} (sample)</b><br>Relies on human thinking: ${d.h}%"/>`;
+    g+=`<rect x="${x(0)}" y="${y0+16}" width="${x(d.a)-x(0)}" height="14" rx="4" fill="var(--ai)" data-tip="<b>${d.g} (sample)</b><br>Highly exposed to AI: ${d.a}%"/>`;
+    g+=`<text x="${x(d.h)+6}" y="${y0+11}" font-size="12" fill="var(--ink-2)">${d.h}%</text><text x="${x(d.a)+6}" y="${y0+27}" font-size="12" fill="var(--muted)">${d.a}%</text>`;
+  });
+  svg.innerHTML=g; bindTips(svg);
+}
+[["#sort-human","h"],["#sort-ai","a"]].forEach(([s,k])=>$(s).onclick=()=>{jobSort=k;$("#sort-human").setAttribute("aria-pressed",k==="h");$("#sort-ai").setAttribute("aria-pressed",k==="a");jobsChart()});
+
+/* MONTH */
+function month(){
+  const realThreads=THREADS.filter(t=>t.kind==="Thread").length, weak=THREADS.length-realThreads;
+  const srcs=new Set(DOTS.map(d=>d.u)).size;
+  $("#stats").innerHTML=[[DOTS.length,"entries added"],[srcs,"distinct sources"],[realThreads,"threads formed"],[weak,"weak signals"]].map(([n,t])=>`<div class="stat"><div class="n">${n}</div><div class="t">${t}</div></div>`).join("");
+  $("#addlist").innerHTML=DOTS.slice().sort((a,b)=>b.y-a.y).map(d=>`<div class="li"><span>${AREAS.find(a=>a.id===d.a).name}</span><div><a href="${d.u}" target="_blank" rel="noopener">${esc(d.title)}</a> <span>· ${esc(d.by)}, ${d.y}</span></div></div>`).join("");
+  $("#meta").textContent=`${DOTS.length} entries · ${AREAS.length} areas · checked 6 Nov 2026`;
+}
+
+/* SPOTTED */
+function patterns(){
+  $("#patterns").innerHTML=THREADS.map(t=>`<div class="pattern"><span class="label">${t.kind} · ${new Set(t.dots.map(d=>byId[d].a)).size} areas</span><h3>${esc(t.name)}</h3><p class="muted">${esc(t.text)}</p><div class="btns"><a class="btn" href="#map" data-open="${t.id}">See it on the map</a></div></div>`).join("");
+  document.querySelectorAll("[data-open]").forEach(a=>a.addEventListener("click",()=>{thread=a.dataset.open;renderThreads();paint();renderDetail()}));
+}
+
+/* SOURCES */
+const TERMS={"OECD":"Open access; publications in principle CC BY 4.0","Stanford HAI":"Figures cited with credit; terms to check"};
+function sources(){
+  $("#srcbody").innerHTML=DOTS.map(d=>{
+    const org=Object.keys(TERMS).find(k=>d.by.includes(k));
+    return `<tr><td><a href="${d.u}" target="_blank" rel="noopener">${esc(d.title)}</a><div class="muted" style="font-size:13px">${esc(d.by)}</div></td><td>${AREAS.find(a=>a.id===d.a).name}</td><td class="tnum">${d.y}</td><td>Figure quoted with link</td><td>${org?TERMS[org]:"Cited with credit; terms to check"}</td></tr>`;
+  }).join("")+`<tr><td>O*NET® 31.0 Database<div class="muted" style="font-size:13px">USDOL/ETA · planned for Jobs view</div></td><td>Work</td><td class="tnum">2026</td><td>Ability ratings, modified</td><td>CC BY 4.0, with required credit line</td></tr>`;
+}
+
+renderThreads(); renderMap(); renderDetail(); hypeChart(); scatter(); card(); jobsChart(); month(); patterns(); sources(); route();
+</script>
+</body>
+</html>
