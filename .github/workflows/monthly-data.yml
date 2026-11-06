@@ -25,12 +25,12 @@ jobs:
           git clone --depth 1 https://github.com/hiring-lab/job_postings_tracker raw/job_postings_tracker
 
       - name: Rebuild the dataset
-        run: python scripts/build_dataset.py raw data
+        run: python build_dataset.py raw .
 
       - name: Save changes
         run: |
           git config user.name "cognitive-roi-data-robot"
           git config user.email "cognitive-roi-data-robot@users.noreply.github.com"
-          git add data
+          git add cognitive_roi_dataset.csv summary.json
           git diff --cached --quiet || git commit -m "Monthly data update $(date -u +%Y-%m)"
           git push
