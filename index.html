@@ -491,6 +491,12 @@ footer{margin-top:56px;padding-block:24px 40px;border-top:1px solid var(--line);
  .mo>div{grid-template-columns:130px 110px minmax(0,1fr) 280px;grid-template-areas:"t d h e" "t d p a";column-gap:24px}
  .mo p{max-width:none}.mo a{grid-area:a;grid-column:auto;align-self:start}.mo em{align-self:start}
 }
+.hero2{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:40px;margin-top:14px;align-items:start}
+.hq{margin:0;border-left:3px solid var(--mark);padding:4px 0 4px 22px}
+.hq p{font-family:var(--serif);font-style:italic;font-size:24px;line-height:1.4;color:var(--ink);max-width:none}
+.hq cite{display:block;margin-top:12px;font-style:normal;font-size:13px;font-weight:600;letter-spacing:.04em;color:var(--muted)}
+.hu{border-top:1px solid var(--ink);padding-top:12px;display:grid;gap:10px}.hu p{font-size:15px!important;color:var(--ink-2)}
+@media (max-width:900px){.hero2{grid-template-columns:minmax(0,1fr);gap:22px}.hq p{font-size:20px}}
 </style>
 </head>
 <body>
@@ -517,9 +523,10 @@ footer{margin-top:56px;padding-block:24px 40px;border-top:1px solid var(--line);
   <div class="vhead">
     <span class="label">Living map <span class="real">Verified sources</span></span>
     <h1>Human cognitive advantage <span class="em hl">in the age of AI.</span></h1>
-    <p class="lead">Every company can now rent the same intelligence. Intelligence you can rent is intelligence your competitors have too. What no one can rent is the judgement of your people: the questions they ask, the risks they spot, the call they make when the machine is confidently wrong. I believe this human cognitive advantage is becoming the most valuable asset a leadership team owns. Cognitive ROI is my framework for measuring it. I have been building the evidence since April 2025.</p>
-    <p>Studies, reports and live datasets on AI and human cognition, each checked and linked. One view for the decisions that matter: where to invest, what to automate and which human capabilities to protect.</p>
-    <p>Six areas on one radar. Sources near the centre carry the most weight. Click any dot to read it, or pick a pattern to see which sources support it and which point the other way.</p>
+    <div class="hero2">
+      <blockquote class="hq"><p>Every company can now rent the same intelligence. Intelligence you can rent is intelligence your competitors have too. What no one can rent is the judgement of your people: the questions they ask, the risks they spot, the call they make when the machine is confidently wrong. I believe this human cognitive advantage is becoming the most valuable asset a leadership team owns. Cognitive ROI is my framework for measuring it. I have been building the evidence since April 2025.</p><cite>Anna Ernst, Cognitive ROI</cite></blockquote>
+      <div class="hu"><span class="label">How to use this map</span><p>Studies, reports and live datasets on AI and human cognition, each checked and linked. One view for the decisions that matter: where to invest, what to automate and which human capabilities to protect.</p><p>Six areas on one radar. Sources near the centre carry the most weight. Click any dot to read it, or pick a pattern to see which sources support it and which point the other way.</p></div>
+    </div>
   </div>
   <div class="lmstats" id="lmstats"></div>
   <div class="pgroups" id="threads" role="group" aria-label="Patterns"></div>
@@ -609,7 +616,7 @@ footer{margin-top:56px;padding-block:24px 40px;border-top:1px solid var(--line);
 <section class="view" id="v-leadership" data-view="leadership" hidden>
   <div class="vhead">
     <span class="label">Cognitive leadership <span class="real">Lens and net assessment</span></span>
-    <h1>Human cognitive advantage <span class="em hl">and what it is worth.</span></h1>
+    <h1>What human cognition is worth. <span class="em hl">How leaders keep it.</span></h1>
     <p>Where human cognition remains a competitive advantage in the age of agentic AI, what it is worth and how leaders protect it. Evidence-based, updated monthly.</p>
   </div>
 
@@ -682,7 +689,7 @@ footer{margin-top:56px;padding-block:24px 40px;border-top:1px solid var(--line);
   </div>
 
   <div class="na-sec">
-    <div class="na-h"><span class="na-n">01</span><div><h2>Three hypotheses</h2><p>Evidence is scored against all three at once. The one the evidence contradicts least stands.</p></div></div>
+    <div class="na-h"><span class="na-n">D1</span><div><h2>Three hypotheses</h2><p>Evidence is scored against all three at once. The one the evidence contradicts least stands.</p></div></div>
     <div class="na-hyp">
       <div><span class="na-tag">H1</span><b>Human cognition gains value as AI advances</b><span class="na-st">3 sources coded, no verdict yet</span></div>
       <div><span class="na-tag">H0</span><b>No change in value</b><span class="na-st">3 sources coded, no verdict yet</span></div>
@@ -691,7 +698,7 @@ footer{margin-top:56px;padding-block:24px 40px;border-top:1px solid var(--line);
   </div>
 
   <div class="na-sec">
-    <div class="na-h"><span class="na-n">02</span><div><h2>One measure: human marginal value</h2><p>The same task, done by AI alone and by a person with AI. The difference is what human cognition adds. Tracked as AI improves.</p></div></div>
+    <div class="na-h"><span class="na-n">D2</span><div><h2>One measure: human marginal value</h2><p>The same task, done by AI alone and by a person with AI. The difference is what human cognition adds. Tracked as AI improves.</p></div></div>
     <div class="na-two">
       <div class="panel">
         <span class="label">Schematic</span>
@@ -731,7 +738,7 @@ footer{margin-top:56px;padding-block:24px 40px;border-top:1px solid var(--line);
   </div>
 
   <div class="na-sec">
-    <div class="na-h"><span class="na-n">03</span><div><h2>The balance, capability by capability</h2><p>Every capability from established models of human cognition, taken whole. Nothing is selected to fit the hypothesis.</p></div></div>
+    <div class="na-h"><span class="na-n">D3</span><div><h2>The balance, capability by capability</h2><p>Every capability from established models of human cognition, taken whole. Nothing is selected to fit the hypothesis.</p></div></div>
     <div class="panel na-board">
       <div class="na-bh"><span>Capability</span><span>AI score, GPT-4 and GPT-5</span><span>Human marginal value</span><span>Erosion</span><span>Readiness</span><span>Studies</span></div>
       <div id="na-rows"></div>
@@ -741,7 +748,7 @@ footer{margin-top:56px;padding-block:24px 40px;border-top:1px solid var(--line);
   </div>
 
   <div class="na-sec">
-    <div class="na-h"><span class="na-n">04</span><div><h2>Competing hypotheses</h2><p>Each piece of evidence is marked against all three hypotheses. Contradictions count more than support.</p></div></div>
+    <div class="na-h"><span class="na-n">D4</span><div><h2>Competing hypotheses</h2><p>Each piece of evidence is marked against all three hypotheses. Contradictions count more than support.</p></div></div>
     <div class="panel"><div class="tablewrap" style="border:0"><table class="na-ach">
       <thead><tr><th>Evidence</th><th>H1</th><th>H0</th><th>H2</th><th>Readiness</th></tr></thead>
       <tbody id="na-ach"></tbody></table></div>
@@ -750,26 +757,26 @@ footer{margin-top:56px;padding-block:24px 40px;border-top:1px solid var(--line);
   </div>
 
   <div class="na-sec">
-    <div class="na-h"><span class="na-n">05</span><div><h2>Indicators and warnings</h2><p>Signals set in advance that would show the balance shifting. Checked every month.</p></div></div>
+    <div class="na-h"><span class="na-n">D5</span><div><h2>Indicators and warnings</h2><p>Signals set in advance that would show the balance shifting. Checked every month.</p></div></div>
     <div class="na-ind" id="na-ind"></div>
   </div>
 
   <div class="na-sec na-cols">
     <div class="panel strong">
-      <span class="label">06 Red team</span>
+      <span class="label">D6 Red team</span>
       <h3 style="margin:8px 0 6px;font-size:22px">The case against</h3>
       <p class="muted">Written by an independent reviewer whose task is to argue H2: that AI substitutes for human cognition. Published in full next to the assessment.</p>
       <p class="na-open">Independent reviewer: appointment in progress.</p>
     </div>
     <div class="panel">
-      <span class="label">07 Evidence readiness</span>
+      <span class="label">D7 Evidence readiness</span>
       <h3 style="margin:8px 0 12px;font-size:22px">How strong is each finding</h3>
       <div class="na-trl" id="na-trl"></div>
     </div>
   </div>
 
   <div class="na-sec">
-    <div class="na-h"><span class="na-n">08</span><div><h2>Method</h2><p>Written before any search. Rules change only with a dated note on this page.</p></div></div>
+    <div class="na-h"><span class="na-n">D8</span><div><h2>Method</h2><p>Written before any search. Rules change only with a dated note on this page.</p></div></div>
     <div class="na-meth">
       <div class="panel">
         <span class="label">How each mark is calculated</span>
@@ -801,7 +808,7 @@ footer{margin-top:56px;padding-block:24px 40px;border-top:1px solid var(--line);
 
   <div class="na-sec">
     <div class="panel">
-      <span class="label">09 Limits</span>
+      <span class="label">D9 Limits</span>
       <h3 style="margin:8px 0 10px;font-size:22px">What this cannot tell you</h3>
       <ul class="na-list">
         <li>Lab results may not hold in daily work.</li>
