@@ -497,6 +497,15 @@ footer{margin-top:56px;padding-block:24px 40px;border-top:1px solid var(--line);
 .hq cite{display:block;margin-top:12px;font-style:normal;font-size:13px;font-weight:600;letter-spacing:.04em;color:var(--muted)}
 .hu{border-top:1px solid var(--ink);padding-top:12px;display:grid;gap:10px}.hu p{font-size:15px!important;color:var(--ink-2)}
 @media (max-width:900px){.hero2{grid-template-columns:minmax(0,1fr);gap:22px}.hq p{font-size:20px}}
+.hq p{font-family:var(--sans)!important;font-style:normal!important;font-size:17px!important;line-height:1.55!important;color:var(--ink-2)!important;margin-top:12px}
+.hq p.hq-big{font-family:var(--serif)!important;font-style:italic!important;font-size:34px!important;line-height:1.2!important;color:var(--ink)!important;margin-top:0}
+@media (max-width:900px){.hq p.hq-big{font-size:26px!important}.hq p{font-size:16px!important}}
+.vhead{gap:16px!important;margin-bottom:40px!important;padding-top:12px}
+.vhead h1{font-size:clamp(36px,6vw,72px)!important;line-height:1.02!important;letter-spacing:-.025em;max-width:18ch}
+.vhead p.sub{font-size:clamp(18px,2vw,23px)!important;line-height:1.4;color:var(--ink-2);max-width:46ch!important;font-weight:400}
+.about-st{font-size:18px;line-height:1.6;color:var(--ink-2);margin-top:10px;max-width:70ch}.about-st .em{font-family:var(--serif);font-style:italic;font-size:22px;color:var(--ink)}
+.vhead p.sub.sub-long{max-width:68ch!important;font-size:clamp(17px,1.6vw,20px)!important;line-height:1.55}
+.brand-b{white-space:nowrap;font-weight:700;color:var(--ink);background:linear-gradient(transparent 62%,var(--mark) 62%,var(--mark) 92%,transparent 92%);padding:0 2px}
 </style>
 </head>
 <body>
@@ -523,10 +532,7 @@ footer{margin-top:56px;padding-block:24px 40px;border-top:1px solid var(--line);
   <div class="vhead">
     <span class="label">Living map <span class="real">Verified sources</span></span>
     <h1>Human cognitive advantage <span class="em hl">in the age of AI.</span></h1>
-    <div class="hero2">
-      <blockquote class="hq"><p>Every company can now rent the same intelligence. Intelligence you can rent is intelligence your competitors have too. What no one can rent is the judgement of your people: the questions they ask, the risks they spot, the call they make when the machine is confidently wrong. I believe this human cognitive advantage is becoming the most valuable asset a leadership team owns. Cognitive ROI is my framework for measuring it. I have been building the evidence since April 2025.</p><cite>Anna Ernst, Cognitive ROI</cite></blockquote>
-      <div class="hu"><span class="label">How to use this map</span><p>Studies, reports and live datasets on AI and human cognition, each checked and linked. One view for the decisions that matter: where to invest, what to automate and which human capabilities to protect.</p><p>Six areas on one radar. Sources near the centre carry the most weight. Click any dot to read it, or pick a pattern to see which sources support it and which point the other way.</p></div>
-    </div>
+    <p class="sub sub-long">Every company can now rent the same intelligence. Intelligence you can rent is intelligence your competitors have too. What no one can rent is the judgement of your people: the questions they ask, the risks they spot, the call they make when the machine is confidently wrong. I believe this human cognitive advantage is becoming the most valuable asset a leadership team owns. <b class="brand-b">Cognitive ROI</b> is my framework for measuring it. I have been building the evidence since April 2025.</p>
   </div>
   <div class="lmstats" id="lmstats"></div>
   <div class="pgroups" id="threads" role="group" aria-label="Patterns"></div>
@@ -556,7 +562,7 @@ footer{margin-top:56px;padding-block:24px 40px;border-top:1px solid var(--line);
   <div class="vhead">
     <span class="label">Hype or real? <span class="real">Claim check</span></span>
     <h1>The big AI claims and fears of 2025, <span class="em hl">checked against the data.</span></h1>
-    <p>What leaders, analysts and researchers said AI would do. What the data shows now. Only the claim is judged, never the person. Verdicts need measured evidence and are rechecked every month.</p>
+    <p class="sub sub-long">Of the 11 big AI claims that can be judged today, 2 held. Leaders, analysts and researchers made bold calls about AI in 2025. Each one is checked against measured data once it comes due. Only the claim is judged, never the person.</p>
   </div>
   <div class="panel">
     <div class="btns" style="justify-content:space-between;margin-bottom:6px"><div class="ctitle">Scoreboard: who was right?</div><span class="real" id="cc-n"></span></div>
@@ -584,7 +590,7 @@ footer{margin-top:56px;padding-block:24px 40px;border-top:1px solid var(--line);
   <div class="vhead">
     <span class="label">Countries <span class="real">Published in 2026</span></span>
     <h1>Adoption, monetisation, investment. <span class="em hl">Market by market.</span></h1>
-    <p>Generative, agentic and physical AI, country by country. Pick a type of AI and a region. The map shows how far it has spread. Below, what moved in that region in 2026.</p>
+    <p class="sub sub-long">About one in five people of working age uses AI. In nine surveyed countries, one in ten pays for it. This page follows where generative, agentic and physical AI take hold, market by market, and where the capital goes.</p>
   </div>
   <div class="panel">
     <div class="btns" style="margin:0 0 8px" role="group" aria-label="Type of AI" id="tbtns"></div>
@@ -617,7 +623,7 @@ footer{margin-top:56px;padding-block:24px 40px;border-top:1px solid var(--line);
   <div class="vhead">
     <span class="label">Cognitive leadership <span class="real">Lens and net assessment</span></span>
     <h1>What human cognition is worth. <span class="em hl">How leaders keep it.</span></h1>
-    <p>Where human cognition remains a competitive advantage in the age of agentic AI, what it is worth and how leaders protect it. Evidence-based, updated monthly.</p>
+    <p class="sub sub-long">Every human cognitive advantage has a half-life. AI closes some gaps within one model generation and leaves others untouched. This page measures which human capabilities still add value next to AI, what they are worth and what it costs to keep them. <b class="brand-b">Cognitive ROI</b> brings the three together for each capability.</p>
   </div>
 
   
@@ -828,7 +834,7 @@ footer{margin-top:56px;padding-block:24px 40px;border-top:1px solid var(--line);
   <div class="vhead">
     <span class="label">This month <span class="real">7 Oct to 6 Nov 2026</span></span>
     <h1>What moved the balance <span class="em hl">this month.</span></h1>
-    <p>New evidence, checks and updates on human cognitive advantage, each with its source and what it changes. Chosen by fixed rules, listed at the bottom of the page.</p>
+    <p class="sub sub-long">Every month this page lists what moved: new studies, new data, claims that came due and indicators that changed. Each item links to its source and names the part of <b class="brand-b">Cognitive ROI</b> it affects.</p>
   </div>
   <div class="mo">
     <div><span class="mo-t ev">New evidence</span><span class="mo-d">29 Oct 2026</span><h3>One adult in ten pays for AI</h3><p>Across nine countries, 10% of adults pay for AI themselves and another 9% have paid access through work or school. YouGov survey of about 2,000 people per country, August and September 2026.</p><em>Moves: Countries, consumers paying for AI</em><a href="https://reutersinstitute.politics.ox.ac.uk/generative-ai-and-news-report-2026-standalone-tools-information-infrastructure" target="_blank" rel="noopener">Reuters Institute</a></div>
@@ -844,7 +850,7 @@ footer{margin-top:56px;padding-block:24px 40px;border-top:1px solid var(--line);
   <div class="vhead">
     <span class="label">Sources and method</span>
     <h1>Built on others' work <span class="em hl">and credited every time.</span></h1>
-    <p>Every figure comes with its source and link. Charts are redrawn by us. The dataset behind this site is released under CC BY 4.0.</p>
+    <p class="sub sub-long">Every figure on this site links to its source. Nothing is estimated or filled in. Datasets are rebuilt each month by open code. The data behind the site is free to reuse under CC BY 4.0.</p>
   </div>
   <div class="panel" style="margin-bottom:14px">
     <span class="label">How I check</span>
@@ -864,8 +870,9 @@ footer{margin-top:56px;padding-block:24px 40px;border-top:1px solid var(--line);
   <div class="vhead">
     <span class="label">About</span>
     <h1>Cognitive <span class="em hl">ROI</span></h1>
-    <p>A framework by Anna Ernst, founder and researcher of Auxion.</p>
+    <p class="sub">A framework by Anna Ernst, founder and researcher of Auxion.</p>
   </div>
+  <div class="panel" style="margin-bottom:12px"><span class="label">Why Cognitive ROI</span><p class="about-st"><span class="em">Intelligence you can rent is intelligence your competitors have too.</span> Every company can now rent the same intelligence. What no one can rent is the judgement of your people: the questions they ask, the risks they spot, the call they make when the machine is confidently wrong. I believe this human cognitive advantage is becoming the most valuable asset a leadership team owns. <b class="brand-b">Cognitive ROI</b> is my framework for measuring it. I have been building the evidence since April 2025.</p></div>
   <div class="panel">
     <span class="label">Copyright and licences</span>
     <div class="aboutlist">
