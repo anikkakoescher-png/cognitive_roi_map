@@ -486,6 +486,11 @@ footer{margin-top:56px;padding-block:24px 40px;border-top:1px solid var(--line);
 .mnote{margin-top:16px;padding-top:14px;border-top:1px solid var(--line);max-width:80ch}.mnote p{font-size:14px;color:var(--ink-2);margin-top:6px}
 .vhead p.lead{font-size:20px;color:var(--ink);font-weight:500;line-height:1.45}
 @media (max-width:600px){.vhead p.lead{font-size:17px}}
+.view[hidden]{display:none!important}
+@media (min-width:901px){
+ .mo>div{grid-template-columns:130px 110px minmax(0,1fr) 280px;grid-template-areas:"t d h e" "t d p a";column-gap:24px}
+ .mo p{max-width:none}.mo a{grid-area:a;grid-column:auto;align-self:start}.mo em{align-self:start}
+}
 </style>
 </head>
 <body>
@@ -816,7 +821,7 @@ footer{margin-top:56px;padding-block:24px 40px;border-top:1px solid var(--line);
   <div class="vhead">
     <span class="label">This month <span class="real">7 Oct to 6 Nov 2026</span></span>
     <h1>What moved the balance <span class="em hl">this month.</span></h1>
-    <p>New evidence, checks and updates on human cognitive advantage, each with its source and what it changes. Chosen by fixed rules, not by how loud the news was.</p>
+    <p>New evidence, checks and updates on human cognitive advantage, each with its source and what it changes. Chosen by fixed rules, listed at the bottom of the page.</p>
   </div>
   <div class="mo">
     <div><span class="mo-t ev">New evidence</span><span class="mo-d">29 Oct 2026</span><h3>One adult in ten pays for AI</h3><p>Across nine countries, 10% of adults pay for AI themselves and another 9% have paid access through work or school. YouGov survey of about 2,000 people per country, August and September 2026.</p><em>Moves: Countries, consumers paying for AI</em><a href="https://reutersinstitute.politics.ox.ac.uk/generative-ai-and-news-report-2026-standalone-tools-information-infrastructure" target="_blank" rel="noopener">Reuters Institute</a></div>
