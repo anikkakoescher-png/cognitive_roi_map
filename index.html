@@ -507,10 +507,34 @@ footer{margin-top:56px;padding-block:24px 40px;border-top:1px solid var(--line);
 .vhead p.sub.sub-long{max-width:70ch!important;font-size:clamp(16px,1.4vw,18px)!important;line-height:1.6}
 .brand-b{white-space:nowrap;font-weight:700;color:var(--ink);background:linear-gradient(transparent 62%,var(--mark) 62%,var(--mark) 92%,transparent 92%);padding:0 2px}
 .vhead h1 .em.hl{font-size:.82em}
+@media (max-width:700px){
+ table.stack thead{display:none}
+ table.stack{min-width:0!important;table-layout:auto!important}
+ table.stack,table.stack tbody,table.stack tr,table.stack td{display:block;width:100%!important}
+ table.stack tr{padding:12px 0;border-bottom:1px solid var(--line)}
+ table.stack td{border:0!important;padding:3px 0!important;text-align:left!important}
+ table.stack td[data-label]:not(:first-child)::before{content:attr(data-label);display:block;font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-top:4px}
+ .tablewrap{overflow:visible!important;border:0!important}
+ .meta{display:none!important}
+ .pad{padding-left:16px!important;padding-right:16px!important}
+ table.ccall tr{display:grid!important;grid-template-columns:minmax(0,1fr) auto;column-gap:16px}
+ table.ccall td:nth-child(-n+2){grid-column:1/-1}
+ table.ccall td:nth-child(2)::before{display:none!important}
+ table.na-ach tr{display:grid!important;grid-template-columns:repeat(3,auto) minmax(0,1fr);column-gap:22px}
+ table.na-ach td:first-child{grid-column:1/-1}
+ #srcbody tr{display:grid!important;grid-template-columns:auto auto minmax(0,1fr);column-gap:14px;padding:12px 0}
+ #srcbody td:first-child{grid-column:1/-1}
+ #srcbody td:nth-child(n+4){grid-column:1/-1}
+ #srcbody td[data-label]:not(:first-child)::before{display:inline;margin:0 6px 0 0;font-size:10px}
+ #srcbody td{font-size:14px}
+ #srcbody td:nth-child(5){color:var(--muted);font-size:13px}
+ .scale i{width:18px!important;height:10px!important}.scale{gap:5px!important}
+ .aname{font-size:40px!important}
+ .na-svg text,.chart text{paint-order:stroke}
+}
 </style>
 </head>
 <body>
-
 
 <header class="pad"><div class="wrap top">
   <div class="brand"><span class="dot" aria-hidden="true"></span><span>Cognitive ROI</span><span class="sep" aria-hidden="true"></span><span class="bmeta">Anna Ernst</span><span class="sep" aria-hidden="true"></span><span class="bmeta tnum">2026</span></div>
@@ -1515,11 +1539,13 @@ function skills(){
   const keys=Object.keys(D.ai).sort((a,b)=>D.ai[b][lastOf(D.ai[b])]-D.ai[a][lastOf(D.ai[a])]);
   if(!keys.length)return;
   chips($("#chips-all"),keys,selC,k=>{selC=k;skills()});
-  lines($("#aichart"),keys.map(k=>({k,d:D.ai[k]})),{sel:selC});
+  const mob=innerWidth<700;lines($("#aichart"),keys.map(k=>({k,d:D.ai[k]})),{sel:selC,W:mob?400:760,H:mob?300:320});
   const lm=lastOf(D.ai.US);$("#ai-title").textContent=`AI know-how in demand, Jan 2019 to ${mlabel(lm)}`;
   $("#sk-sub").textContent=`Change in 2026, from ${mlabel(Y26)} to ${mlabel(lm)}, in percentage points.`;
-  hbars($("#skchart"),keys.map(k=>{const a=D.ai[k],L=a[lastOf(a)];return{n:NAMES[k],v:L-a[Y26],c:"var(--ai)",tip:`${a[Y26].toFixed(1)}% to ${L.toFixed(1)}%`}}).sort((a,b)=>b.v-a.v),{W:760,L:140,row:28,fmt:v=>sgn(v)+" pp",tfmt:v=>v+""});
+  hbars($("#skchart"),keys.map(k=>{const a=D.ai[k],L=a[lastOf(a)];return{n:NAMES[k],v:L-a[Y26],c:"var(--ai)",tip:`${a[Y26].toFixed(1)}% to ${L.toFixed(1)}%`}}).sort((a,b)=>b.v-a.v),{W:mob?400:760,L:mob?110:140,row:28,fmt:v=>sgn(v)+" pp",tfmt:v=>v+""});
 }
+{let mw=innerWidth<700;addEventListener("resize",()=>{const m=innerWidth<700;if(m!==mw){mw=m;try{skills()}catch(e){}}})}
+{const r=document.getElementById("radar");const f=()=>r&&r.setAttribute("viewBox",innerWidth<700?"-250 -10 1300 820":"-130 -10 1060 820");f();addEventListener("resize",f)}
 [["hs-cog","cognitive"],["hs-jud","judgement"],["hs-inn","innovation"]].forEach(([id,k])=>$("#"+id).onclick=()=>{hsK=k;setP(["hs-cog","hs-jud","hs-inn"],id);skills()});
 
 function month(){
@@ -1539,7 +1565,7 @@ function patterns(){
 
 const TERMS={"OECD":"Open access; publications in principle CC BY 4.0","Stanford HAI":"Figures cited with credit"};
 function sources(){
-  $("#srcbody").innerHTML=DOTS.map(d=>{
+  $("#srcbody").innerHTML=[...DOTS].sort((a,b)=>b.y-a.y).map(d=>{
     const org=Object.keys(TERMS).find(k=>d.by.includes(k));
     return `<tr><td><a href="${d.u}" target="_blank" rel="noopener">${esc(d.title)}</a><div class="muted" style="font-size:13px">${esc(d.by)}</div></td><td>${AREAS.find(a=>a.id===d.a).name}</td><td class="tnum">${d.y}</td><td>${{ai:"Daily data aggregated to monthly means",ilo:"Task scores averaged by occupation",onet:"Importance ratings rescaled to 0 to 100 and matched to ISCO-08",ilostat:"Employment used as weights"}[d.ds]||"Figure quoted with link"}</td><td>${d.lic?d.lic+", Source: "+esc(d.by):org?TERMS[org]:"Cited with credit"}</td></tr>`;
   }).join("")+`<tr><td><a href="https://ibs.org.pl/?p=2207" target="_blank" rel="noopener">O*NET-SOC to ISCO-08 crosswalk</a><div class="muted" style="font-size:13px">IBS Warsaw, Hardy, Keister and Lewandowski</div></td><td>Work</td><td class="tnum">2018</td><td>Used to match occupations</td><td>Cited with credit</td></tr><tr><td><a href="https://www.bls.gov/soc/soccrosswalks.htm" target="_blank" rel="noopener">SOC 2010 to 2018 crosswalk</a><div class="muted" style="font-size:13px">U.S. Bureau of Labor Statistics</div></td><td>Work</td><td class="tnum">2018</td><td>Used to match occupations</td><td>US government work, public domain</td></tr>`;
@@ -1593,6 +1619,9 @@ el.innerHTML=D.map(([n,a,b])=>{const st=b>=10?"Closed":b-a>=3?"Closing fast":b-a
 (function(){const mo=document.querySelector(".mo");if(!mo)return;const items=[...mo.children];const P={Jan:0,Feb:1,Mar:2,Apr:3,May:4,Jun:5,Jul:6,Aug:7,Sep:8,Oct:9,Nov:10,Dec:11};
 const d=el=>{const t=(el.querySelector(".mo-d")||{}).textContent||"";const m=t.trim().match(/(\d+) (\w{3}) (\d{4})/);return m?new Date(+m[3],P[m[2]],+m[1]).getTime():0};
 items.map((el,i)=>[el,d(el),i]).sort((a,b)=>b[1]-a[1]||a[2]-b[2]).forEach(([el])=>mo.appendChild(el));})();
+
+(function(){const lab=()=>document.querySelectorAll("table").forEach(t=>{const h=[...t.querySelectorAll("thead th")].map(x=>x.textContent.trim());if(!h.length)return;t.classList.add("stack");t.querySelectorAll("tbody tr").forEach(r=>[...r.children].forEach((c,i)=>{if(h[i]&&!c.dataset.label)c.dataset.label=h[i]}))});
+lab();new MutationObserver(()=>{clearTimeout(window.__lt);window.__lt=setTimeout(lab,60)}).observe(document.body,{childList:true,subtree:true});})();
 </script>
 
 </body>
