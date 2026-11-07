@@ -532,6 +532,27 @@ footer{margin-top:56px;padding-block:24px 40px;border-top:1px solid var(--line);
  .aname{font-size:40px!important}
  .na-svg text,.chart text{paint-order:stroke}
 }
+.nmt .mt{text-transform:uppercase;letter-spacing:.06em;font-size:10.5px}
+.nm-ev{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px;margin:18px 0 14px}
+.nm-ev>div{border:1px solid var(--line);border-radius:12px;padding:14px;background:var(--card,transparent);display:flex;flex-direction:column;gap:8px}
+.nm-ev p{font-size:14px;line-height:1.5;margin:0;flex:1}.nm-ev small{font-size:12px;color:var(--muted)}.nm-ev a{color:var(--ink-2)}
+@media (max-width:1100px){.nm-ev{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:600px){.nm-ev{grid-template-columns:minmax(0,1fr)}}
+.nmn{display:flex;flex-wrap:wrap;gap:5px;margin-top:8px}.nmn i{font-style:normal;font-size:13px;font-weight:500;line-height:1;padding:5px 9px;border-radius:999px;border:1px solid var(--line);background:var(--bg);color:var(--ink)}
+.nm-why{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:6px 0 18px}
+.nm-why>div{border-top:2px solid var(--ink);padding-top:12px;display:flex;flex-direction:column;gap:6px}
+.nm-why b{font-size:17px;line-height:1.3}.nm-why p{font-size:14px;line-height:1.5;margin:0;color:var(--ink-2);flex:1}.nm-why small{font-size:12px;color:var(--muted)}.nm-why a{color:var(--ink-2)}
+@media (max-width:800px){.nm-why{grid-template-columns:minmax(0,1fr);gap:18px}}
+.nm-h3{margin:30px 0 12px}.nm-h3 h3{font-size:22px;margin:6px 0 0;letter-spacing:-.01em}
+.nm-mech{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.nm-mech>div{border:1px solid var(--line);border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:8px}
+.nm-mech h4{margin:0;font-size:18px}.nm-mech p{margin:0;font-size:14px;line-height:1.5}.nm-mech p.nm-e{color:var(--ink-2);border-top:1px solid var(--line);padding-top:8px;flex:1}.nm-mech small,.nm-deb small,.nm-rp small{font-size:12px;color:var(--muted)}.nm-mech a,.nm-deb a{color:var(--ink-2)}
+.nm-deb{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-bottom:12px}
+.nm-deb>div{border-top:2px solid var(--ink);padding-top:10px;display:flex;flex-direction:column;gap:6px}.nm-deb p{margin:0;font-size:14px;line-height:1.5;flex:1}
+.nm-rp{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-bottom:14px}
+.nm-rp>div{border:1px dashed var(--line-2,var(--line));border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:6px}.nm-rp b{font-size:17px}.nm-rp p{margin:0;font-size:14px;line-height:1.5;flex:1}
+@media (max-width:1000px){.nm-mech,.nm-rp{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:640px){.nm-mech,.nm-rp,.nm-deb{grid-template-columns:minmax(0,1fr)}}
 </style>
 </head>
 <body>
@@ -710,8 +731,59 @@ footer{margin-top:56px;padding-block:24px 40px;border-top:1px solid var(--line);
     <div class="friction"><b>Where friction pays.</b> The evidence points to targeted friction. Friction where people lead or the stakes are high. Less friction where AI clearly leads, because there human interference lowered results.</div>
   </div>
 
-  <div class="na-sec"><div class="na-h"><span class="na-n">D</span><div><h2>The net assessment</h2><p>The full evidence base, capability by capability.</p></div></div></div>
-  <div class="na-sbanner"><span class="real">First sources in</span> Three seed sources are verified and shown below. Everything else reads "Not assessed" until the systematic search runs.</div>
+  <div class="na-sec nm" style="margin-top:8px">
+    <div class="na-h"><span class="na-n">D</span><div><h2>Copilot, agent or digital employee: what the label commits you to</h2><p>Every name for AI carries a picture of who decides and who answers for the result. Cognitive linguistics calls these pictures conceptual metaphors. Thirty-one names in use today fall into seven pictures.</p></div></div>
+    <div class="nm-why">
+      <div><span class="label">Adoption</span><b>The name sets expectations before anyone uses the system.</b><p>A chatbot introduced as a "trained professional" won more trials. After use, the same chatbot introduced as a "toddler" was rated more usable and more likely to be adopted. Rollout returns depend on what happens after the trial.</p><small><a href="https://arxiv.org/abs/2008.02311" target="_blank" rel="noopener">Khadpe et al., CSCW 2020</a></small></div>
+      <div><span class="label">Accountability</span><b>Someone has to answer for what AI does.</b><p>The EU AI Act requires human oversight for high-risk AI systems. A name that suggests the system acts on its own leaves open who carries that duty.</p><small><a href="https://eur-lex.europa.eu/eli/reg/2024/1689/oj" target="_blank" rel="noopener">Regulation (EU) 2024/1689, Article 14</a></small></div>
+      <div><span class="label">Investors</span><b>The words for AI are part of the equity story.</b><p>331 of 493 S&amp;P 500 earnings calls cited AI between June and September 2026. How a CEO names AI tells the market what the company expects from it.</p><small><a href="https://insight.factset.com/more-than-65-of-sp-500-earnings-calls-for-q2-cited-ai" target="_blank" rel="noopener">FactSet, Sep 2026</a></small></div>
+    </div>
+    <div class="capt nmt">
+      <div class="capt-h"><span>Picture</span><span>Names in use</span><span>Who decides</span><span>Who answers for it</span><span>What it does to the business case</span></div>
+      <div><span class=cf>Instrument</span><div><b>AI is a tool</b><span class="nmn"><i>tool</i><i>model</i><i>chatbot</i><i>engine</i><i>platform</i></span></div><span class="ai h">The person</span><p>The person who uses it.</p><p>Budgeted as software. Nobody plans for it to act on its own, so it stays under-used.</p></div>
+      <div><span class=cf>Utility</span><div><b>AI is a supply</b><span class="nmn"><i>intelligence on tap</i><i>electricity</i><i>operating system</i><i>AI factory</i></span></div><span class="ai h">The person</span><p>The buyer. The supplier answers for uptime.</p><p>Priced per unit and bought by everyone. Advantage moves to what the company does with it.</p></div>
+      <div><span class=cf>Helper</span><div><b>AI is a junior</b><span class="nmn"><i>assistant</i><i>intern</i><i>second brain</i></span></div><span class="ai h">The person</span><p>The person. The helper prepares.</p><p>Low promise, easy adoption. Drafts that go out unread.</p></div>
+      <div><span class=cf>Crew</span><div><b>AI shares the work</b><span class="nmn"><i>copilot</i><i>thought partner</i><i>sparring partner</i><i>co-scientist</i></span></div><span class="ai h">The person, in command</span><p>The person in command.</p><p>Gains depend on the person staying engaged. Capability fades where the crew takes over.</p></div>
+      <div><span class=cf>Proxy</span><div><b>AI acts for you</b><span class="nmn"><i>agent</i><i>autopilot</i><i>orchestrator</i><i>swarm</i></span></div><span class="ai c">AI, within a mandate</span><p>The company that gave the mandate.</p><p>Labour cost moves to compute. Liability stays with the company. Vague mandates let actions outrun oversight.</p></div>
+      <div><span class=cf>Staff</span><div><b>AI is a member of staff</b><span class="nmn"><i>digital employee</i><i>digital worker</i><i>digital labour</i><i>AI workforce</i><i>coworker</i><i>colleague</i><i>teammate</i></span></div><span class="ai n">Unclear</span><p>Left open. A system cannot be held to account. Someone still has to be.</p><p>AI is budgeted against headcount. Trust and org charts treat it as a person. People who saw AI as a teammate reported higher team cohesion.</p></div>
+      <div><span class=cf>Mind</span><div><b>AI thinks</b><span class="nmn"><i>companion</i><i>brain</i><i>oracle</i><i>superintelligence</i></span></div><span class="ai n">Unclear</span><p>Left open by the name.</p><p>People shown AI as a companion credited it with more of a mind. The effect replicated. Expectations rise faster than the system.</p></div>
+    </div>
+    <div class="nm-h3"><span class="label">The theory</span><h3>Four ways a name works on the mind</h3></div>
+    <div class="nm-mech">
+      <div><span class="obs-k">1</span><h4>Frame</h4><p>A name opens a whole scene. "Copilot" brings a cockpit, a captain and a chain of command. People reason inside that scene without noticing it.</p><p class="nm-e">Crime described as a "beast" or a "virus" shifted which policies readers chose. A larger follow-up found the effect smaller and dependent on conditions.</p><small><a href="https://doi.org/10.1371/journal.pone.0016782" target="_blank" rel="noopener">Thibodeau and Boroditsky 2011</a>; <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC4260786" target="_blank" rel="noopener">Steen et al. 2014</a>; Fillmore 1982; Lakoff and Johnson 1980</small></div>
+      <div><span class="obs-k">2</span><h4>Stance</h4><p>"Agent", "teammate" and "brain" invite people to predict the system by its goals and beliefs. "Tool" and "engine" invite prediction by its design.</p><p class="nm-e">Shanahan argues that words such as knows, believes and thinks mislead about what language models do.</p><small>Dennett 1987; <a href="https://arxiv.org/abs/2212.03551" target="_blank" rel="noopener">Shanahan, Communications of the ACM 2024</a></small></div>
+      <div><span class="obs-k">3</span><h4>Social response</h4><p>People apply social rules to computers on minimal cues. A human name or role is a strong cue.</p><p class="nm-e">Three factors predict how readily people see a mind in a machine: what they know about it, their need to explain it and their need for contact.</p><small>Weizenbaum 1966; Reeves and Nass 1996; <a href="https://doi.org/10.1037/0033-295X.114.4.864" target="_blank" rel="noopener">Epley, Waytz and Cacioppo 2007</a></small></div>
+      <div><span class="obs-k">4</span><h4>Calibration</h4><p>Trust should track capability. Too much trust leads to misuse. Too little leads to disuse. A name sets where trust starts.</p><p class="nm-e">This is the classic account of trust in automation, written for cockpits and control rooms long before language models.</p><small><a href="https://doi.org/10.1518/001872097778543886" target="_blank" rel="noopener">Parasuraman and Riley 1997</a>; <a href="https://doi.org/10.1518/hfes.46.1.50_30392" target="_blank" rel="noopener">Lee and See 2004</a></small></div>
+    </div>
+    <div class="nm-h3"><span class="label">The evidence on AI names</span><h3>Five studies test what framing changes</h3></div>
+    <div class="nm-ev">
+      <div><span class="label">Experiment, 2020</span><p>The same chatbot was introduced as a "toddler" or a "trained professional". The professional got more people to try it. After use, people rated the low-competence version more usable and were more likely to adopt it.</p><small><a href="https://arxiv.org/abs/2008.02311" target="_blank" rel="noopener">Khadpe et al., CSCW 2020</a>, three experiments</small></div>
+      <div><span class="label">Experiment, preprint</span><p>People shown language models as companions credited them with more mental capacities than people shown machines or tools. The effect held in a second study with 604 people. Effects on reliance were mixed.</p><small><a href="https://arxiv.org/abs/2510.18039" target="_blank" rel="noopener">Chen et al., arXiv 2025, revised 2026</a>, 470 and 604 people</small></div>
+      <div><span class="label">Experiment, 2024</span><p>People saw a human-like or a neutral description of an AI system. Human-like wording did not raise trust overall. The product and the stakes mattered more.</p><small><a href="https://arxiv.org/abs/2404.16047" target="_blank" rel="noopener">Inie et al., ACM FAccT 2024</a>, 954 people</small></div>
+      <div><span class="label">Experiment, preprint</span><p>People read texts about AI with or without human-like language. Their views of AI barely moved. A text about the dangers of AI did move them.</p><small><a href="https://arxiv.org/abs/2606.29121" target="_blank" rel="noopener">Hou et al., arXiv 2026</a>, 815 people</small></div>
+      <div><span class="label">Survey, 2026</span><p>People who saw AI as a teammate reported higher team cohesion, linked to their trust in it. The assigned framing did not take hold, so this is a correlation.</p><small><a href="https://rpio.psychopen.eu/index.php/rpio/article/view/17157" target="_blank" rel="noopener">Hoffmann et al., Research for People in Organizations 2026</a>, 217 people</small></div>
+    </div>
+    <div class="nm-h3"><span class="label">Where science disagrees</span><h3>Whether mind words fit at all is an open question</h3></div>
+    <div class="nm-deb">
+      <div><b>No meaning from form alone</b><p>A system trained only on text form cannot learn meaning.</p><small><a href="https://aclanthology.org/2020.acl-main.463/" target="_blank" rel="noopener">Bender and Koller, ACL 2020</a></small></div>
+      <div><b>Prediction without explanation</b><p>Language models describe and predict. They do not explain, which human thought does.</p><small><a href="https://www.nytimes.com/2023/03/08/opinion/noam-chomsky-chatgpt-ai.html" target="_blank" rel="noopener">Chomsky, Roberts and Watumull, New York Times 2023</a></small></div>
+      <div><b>A split field</b><p>Researchers disagree on whether these systems understand. Both sides have serious arguments.</p><small><a href="https://doi.org/10.1073/pnas.2215907120" target="_blank" rel="noopener">Mitchell and Krakauer, PNAS 2023</a></small></div>
+    </div>
+    <div class="friction"><b>For the boardroom.</b> When scientists cannot agree that a word fits, a company that uses it takes a position. Staff and mind words claim the most.</div>
+    <div class="friction"><b>Reading.</b> Names set expectations before use. In the one study that followed people through use, the name that promised less won the verdict. Human-like wording alone did not raise trust in two large studies. So the name matters most at first contact. What people then see the system do decides the rest. Five studies, none of them in a workplace over time.</div>
+    <div class="nm-h3"><span class="label">Research programme <span class="na-st">Proposed, not yet run</span></span><h3>Four hypotheses to test in companies</h3></div>
+    <div class="nm-rp">
+      <div><span class="na-tag">N1</span><b>Promise</b><p>A name that promises more wins more trials and keeps fewer users.</p><small>Measure: trial rate and use after 90 days, by name</small></div>
+      <div><span class="na-tag">N2</span><b>Blame</b><p>After an AI error, staff names move blame away from the person who approved the output.</p><small>Measure: blame assigned by managers in controlled scenarios</small></div>
+      <div><span class="na-tag">N3</span><b>Delegation</b><p>Agent and staff names raise the share of output accepted without a check in high-stakes work.</p><small>Measure: share of AI output accepted unverified</small></div>
+      <div><span class="na-tag">N4</span><b>Erosion</b><p>Crew names keep people more engaged than staff names and slow the loss of capability.</p><small>Measure: performance without AI after months of use</small></div>
+    </div>
+    <div class="friction" style="margin-top:10px"><b>The move.</b> Treat the name as a decision. Pick it for the decision rights you intend. If people keep the call, keep staff words such as employee or teammate out of it. Promise less than the system delivers. Name the person who answers for every agent.</div>
+    <p class="credit">References: G. Lakoff and M. Johnson, Metaphors We Live By (1980). C. J. Fillmore, Frame semantics, in Linguistics in the Morning Calm (1982). D. C. Dennett, The Intentional Stance (1987). J. Weizenbaum, ELIZA, Communications of the ACM 9 (1966). B. Reeves and C. Nass, The Media Equation (1996). The names are common terms in vendor and press use. The columns on who decides, who answers and the business case are a reading of each picture, not a finding. The studies test names and framings in general. None tests these exact product names.</p>
+  </div>
+
+  <div class="na-sec"><div class="na-h"><span class="na-n">E</span><div><h2>The net assessment</h2><p>The full evidence base, capability by capability.</p></div></div></div>
+  <div class="na-sbanner"><span class="real">First sources in</span> Six sources are verified and shown below. Everything else reads "Not assessed" until the systematic search runs.</div>
   <div class="na-status" aria-label="Status">
     <div class="na-sl"><span class="label">Status, 6 Nov 2026</span></div>
     <div><b>The measure</b><p>Across 420 papers to October 2026, people with AI beat people alone (g = +0.53) but did worse than the better of the two alone (g = −0.35). In the 2024 analysis the combination helped only where people outperformed the AI.</p></div>
@@ -720,7 +792,7 @@ footer{margin-top:56px;padding-block:24px 40px;border-top:1px solid var(--line);
   </div>
 
   <div class="na-sec">
-    <div class="na-h"><span class="na-n">D1</span><div><h2>Three hypotheses</h2><p>Evidence is scored against all three at once. The one the evidence contradicts least stands.</p></div></div>
+    <div class="na-h"><span class="na-n">E1</span><div><h2>Three hypotheses</h2><p>Evidence is scored against all three at once. The one the evidence contradicts least stands.</p></div></div>
     <div class="na-hyp">
       <div><span class="na-tag">H1</span><b>Human cognition gains value as AI advances</b><span class="na-st">3 sources coded, no verdict yet</span></div>
       <div><span class="na-tag">H0</span><b>No change in value</b><span class="na-st">3 sources coded, no verdict yet</span></div>
@@ -729,7 +801,7 @@ footer{margin-top:56px;padding-block:24px 40px;border-top:1px solid var(--line);
   </div>
 
   <div class="na-sec">
-    <div class="na-h"><span class="na-n">D2</span><div><h2>One measure: human marginal value</h2><p>The same task, done by AI alone and by a person with AI. The difference is what human cognition adds. Tracked as AI improves.</p></div></div>
+    <div class="na-h"><span class="na-n">E2</span><div><h2>One measure: human marginal value</h2><p>The same task, done by AI alone and by a person with AI. The difference is what human cognition adds. Tracked as AI improves.</p></div></div>
     <div class="na-two">
       <div class="panel">
         <span class="label">Schematic</span>
@@ -769,7 +841,7 @@ footer{margin-top:56px;padding-block:24px 40px;border-top:1px solid var(--line);
   </div>
 
   <div class="na-sec">
-    <div class="na-h"><span class="na-n">D3</span><div><h2>The balance, capability by capability</h2><p>Every capability from established models of human cognition, taken whole. Nothing is selected to fit the hypothesis.</p></div></div>
+    <div class="na-h"><span class="na-n">E3</span><div><h2>The balance, capability by capability</h2><p>Every capability from established models of human cognition, taken whole. Nothing is selected to fit the hypothesis.</p></div></div>
     <div class="panel na-board">
       <div class="na-bh"><span>Capability</span><span>AI score, GPT-4 and GPT-5</span><span>Human marginal value</span><span>Erosion</span><span>Readiness</span><span>Studies</span></div>
       <div id="na-rows"></div>
@@ -779,7 +851,7 @@ footer{margin-top:56px;padding-block:24px 40px;border-top:1px solid var(--line);
   </div>
 
   <div class="na-sec">
-    <div class="na-h"><span class="na-n">D4</span><div><h2>Competing hypotheses</h2><p>Each piece of evidence is marked against all three hypotheses. Contradictions count more than support.</p></div></div>
+    <div class="na-h"><span class="na-n">E4</span><div><h2>Competing hypotheses</h2><p>Each piece of evidence is marked against all three hypotheses. Contradictions count more than support.</p></div></div>
     <div class="panel"><div class="tablewrap" style="border:0"><table class="na-ach">
       <thead><tr><th>Evidence</th><th>H1</th><th>H0</th><th>H2</th><th>Readiness</th></tr></thead>
       <tbody id="na-ach"></tbody></table></div>
@@ -788,26 +860,26 @@ footer{margin-top:56px;padding-block:24px 40px;border-top:1px solid var(--line);
   </div>
 
   <div class="na-sec">
-    <div class="na-h"><span class="na-n">D5</span><div><h2>Indicators and warnings</h2><p>Signals set in advance that would show the balance shifting. Checked every month.</p></div></div>
+    <div class="na-h"><span class="na-n">E5</span><div><h2>Indicators and warnings</h2><p>Signals set in advance that would show the balance shifting. Checked every month.</p></div></div>
     <div class="na-ind" id="na-ind"></div>
   </div>
 
   <div class="na-sec na-cols">
     <div class="panel strong">
-      <span class="label">D6 Red team</span>
+      <span class="label">E6 Red team</span>
       <h3 style="margin:8px 0 6px;font-size:22px">The case against</h3>
       <p class="muted">Written by an independent reviewer whose task is to argue H2: that AI substitutes for human cognition. Published in full next to the assessment.</p>
       <p class="na-open">Independent reviewer: appointment in progress.</p>
     </div>
     <div class="panel">
-      <span class="label">D7 Evidence readiness</span>
+      <span class="label">E7 Evidence readiness</span>
       <h3 style="margin:8px 0 12px;font-size:22px">How strong is each finding</h3>
       <div class="na-trl" id="na-trl"></div>
     </div>
   </div>
 
   <div class="na-sec">
-    <div class="na-h"><span class="na-n">D8</span><div><h2>Method</h2><p>Written before any search. Rules change only with a dated note on this page.</p></div></div>
+    <div class="na-h"><span class="na-n">E8</span><div><h2>Method</h2><p>Written before any search. Rules change only with a dated note on this page.</p></div></div>
     <div class="na-meth">
       <div class="panel">
         <span class="label">How each mark is calculated</span>
@@ -820,8 +892,8 @@ footer{margin-top:56px;padding-block:24px 40px;border-top:1px solid var(--line);
       </div>
       <div class="panel">
         <span class="label">Search and screening</span>
-        <div class="na-seed"><b class="tnum">3</b><span>seed sources included so far</span></div>
-        <p class="na-small">The three seed sources were selected by hand as anchors. The systematic search adds studies with each monthly update and reports how many were found, screened, excluded and included. Sources: arXiv, SSRN, NBER, PubMed and peer-reviewed journals. Window: 2024 to 2026. A study is included only with a human baseline on the same task, a reported sample size and a named AI model with its date.</p>
+        <div class="na-seed"><b class="tnum">6</b><span>sources included so far</span></div>
+        <p class="na-small">Three seed sources were selected by hand as anchors. Three more came from a first targeted search on 7 Nov 2026. The systematic search adds studies with each monthly update and reports how many were found, screened, excluded and included. Sources: arXiv, SSRN, NBER, PubMed and peer-reviewed journals. Window: 2024 to 2026. A study is included only with a human baseline on the same task, a reported sample size and a named AI model with its date.</p>
       </div>
       <div class="panel">
         <span class="label">Evidence table</span>
@@ -839,7 +911,7 @@ footer{margin-top:56px;padding-block:24px 40px;border-top:1px solid var(--line);
 
   <div class="na-sec">
     <div class="panel">
-      <span class="label">D9 Limits</span>
+      <span class="label">E9 Limits</span>
       <h3 style="margin:8px 0 10px;font-size:22px">What this cannot tell you</h3>
       <ul class="na-list">
         <li>Lab results may not hold in daily work.</li>
@@ -1023,6 +1095,13 @@ const DOTS=[
  ,{id:"pwc-ceo",a:"money",k:"rep",title:"29th Global CEO Survey",by:"PwC, via Fortune",y:2026,f:"Of 4,454 CEOs in 95 countries, only 10 to 12% see revenue or cost benefits from AI. 56% say they get nothing out of it.",u:"https://fortune.com/2026/01/19/pwc-global-chairman-mohamed-kande-ai-nothing-basics-29th-ceo-survey-davos-world-economic-forum/?rand=8593"}
  ,{id:"openai-intern",a:"machine",k:"sig",title:"OpenAI's research intern",by:"TechRadar",y:2026,f:"OpenAI says it met its goal of an AI that carries out well-defined research tasks under human direction. No independent measurement exists yet.",u:"https://techradar.com/pro/openai-says-it-has-built-an-automated-research-intern-to-carry-out-menial-tasks-and-its-only-just-getting-started"}
  ,{id:"robotaxi",a:"machine",k:"sig",title:"Tesla robotaxis at the end of 2025",by:"IBTimes",y:2026,f:"About 30 robotaxis ran in Austin and about 130 in the Bay Area at the end of 2025, all with human safety monitors, far below the year's targets.",u:"https://www.ibtimes.co.uk/1500-cars-just-30-tesla-robotaxi-missed-big-2025-targets-1767530"}
+,{id:"goh",a:"mind",k:"exp",title:"Large Language Model Influence on Diagnostic Reasoning",by:"Goh et al., JAMA Network Open",y:2024,f:"In a randomised trial with 50 physicians, GPT-4 alone scored a median of about 92. Physicians with GPT-4 scored 76, physicians without it 74.",u:"https://hai.stanford.edu/news/can-ai-improve-medical-diagnostic-accuracy"}
+,{id:"xu-compl",a:"mind",k:"exp",title:"Toward Human-AI Complementarity Across Diverse Tasks",by:"Xu et al., arXiv preprint",y:2026,f:"On 952 test items, AI alone scored 68.9%, people 49.9% and the best combination 69.3%. AI was wrong and people right on only 8.9% of items. Lay raters, one model.",u:"https://arxiv.org/abs/2605.04070"}
+,{id:"chen-comp",a:"mind",k:"exp",title:"Presenting language models as companions",by:"Chen et al., arXiv preprint",y:2025,f:"People shown language models as companions credited them with more mental capacities than people shown machines or tools. Replicated with 604 people.",u:"https://arxiv.org/abs/2510.18039"}
+,{id:"inie",a:"mind",k:"exp",title:"From AI to Probabilistic Automation",by:"Inie et al., ACM FAccT",y:2024,f:"954 people saw human-like or neutral descriptions of an AI system. Human-like wording did not raise trust overall.",u:"https://arxiv.org/abs/2404.16047"}
+,{id:"hou-anthro",a:"mind",k:"exp",title:"Does Anthropomorphic Language Impact Public Perceptions of AI?",by:"Hou et al., arXiv preprint",y:2026,f:"815 people read texts about AI with or without human-like language. Their views barely moved.",u:"https://arxiv.org/abs/2606.29121"}
+,{id:"hoffmann-team",a:"work",k:"obs",title:"Working With AI: tool or partner",by:"Hoffmann et al., Research for People in Organizations",y:2026,f:"217 people. Those who saw AI as a teammate reported higher team cohesion, linked to trust. Correlational.",u:"https://rpio.psychopen.eu/index.php/rpio/article/view/17157"}
+,{id:"factset-q2",a:"signals",k:"dat",title:"S&P 500 earnings calls citing AI, Q2 2026",by:"FactSet",y:2026,f:"331 of 493 S&P 500 earnings calls cited AI between 15 June and 14 September 2026, about 67%. Third straight quarter above 65%.",u:"https://insight.factset.com/more-than-65-of-sp-500-earnings-calls-for-q2-cited-ai"}
 ];
 const QN={1:"What can AI take over?",2:"What do humans bring?",3:"What does the market pay for?",4:"Where does the money go? Does it return?",t:"What people and firms claim"};
 const LV={A:"A. Official statistics or peer-reviewed",B:"B. Research with a stated method",C:"C. News report citing a primary source",D:"D. Signal or forecast"};
@@ -1600,7 +1679,10 @@ loadData().then(()=>{month();skills();const c=$("#centre-dp");if(c)c.textContent
  document.getElementById("na-ach").innerHTML=[
   ["Vaccaro et al. 2024, meta-analysis. The combination helps where people outperform AI and hurts where AI outperforms people.","p","x","p",7],
   ["Vaccaro et al. 2026, automated update, 420 papers. Combination still below the better of the two alone (g = −0.35).","p","x","p",7],
-  ["Hendrycks et al. 2025. AI scored 27% with GPT-4 and 57% with GPT-5 on ten CHC domains. Measures the AI side only.","n","n","n",2]
+  ["Hendrycks et al. 2025. AI scored 27% with GPT-4 and 57% with GPT-5 on ten CHC domains. Measures the AI side only.","n","n","n",2],
+  ["Goh et al. 2024, randomised trial, 50 physicians. GPT-4 alone scored a median of about 92 on diagnostic reasoning. Physicians with GPT-4 scored 76, without it 74.","x","p","c",3],
+  ["Agarwal et al., NBER 31422, revised 2026. AI predictions did not improve radiologists on average. They underweighted the AI. Unless that bias is corrected, cases should go to people or to AI, rarely to both.","x","p","p",3],
+  ["Xu et al. 2026, preprint, 420 people, nine task sets. AI alone 68.9%, people 49.9%, best combination 69.3%. Only 8.9% of items had AI wrong and people right.","x","n","c",3]
  ].map(([e,a,b,c,r])=>`<tr><td>${e}</td><td>${M[a]}</td><td>${M[b]}</td><td>${M[c]}</td><td>${rl(r)}</td></tr>`).join("");
  document.getElementById("na-ind").innerHTML=[
   ["AI matches the human baseline on a reasoning test with human norms","Would support H2 for reasoning","Not reached. GPT-5 scores 7 of 10 on on-the-spot reasoning, the latest model scored in Hendrycks et al. 2025."],
