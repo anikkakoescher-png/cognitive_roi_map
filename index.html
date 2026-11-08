@@ -553,6 +553,117 @@ footer{margin-top:56px;padding-block:24px 40px;border-top:1px solid var(--line);
 .nm-rp>div{border:1px dashed var(--line-2,var(--line));border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:6px}.nm-rp b{font-size:17px}.nm-rp p{margin:0;font-size:14px;line-height:1.5;flex:1}
 @media (max-width:1000px){.nm-mech,.nm-rp{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (max-width:640px){.nm-mech,.nm-rp,.nm-deb{grid-template-columns:minmax(0,1fr)}}
+.cx-sum{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-top:1px solid var(--ink);border-bottom:1px solid var(--line);margin-bottom:16px}
+.cx-sum>div{padding:16px 16px 16px 0}.cx-sum>div+div{padding-left:16px;border-left:1px solid var(--line)}.cx-sum b{display:block;font-size:40px;font-weight:800;line-height:1;letter-spacing:-.02em}.cx-sum span{display:block;margin-top:6px;font-size:14px;color:var(--ink-2)}
+.cx-head,.cx-row{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1.5fr) minmax(0,1.3fr);gap:22px}
+.cx-head{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:600;padding-bottom:10px;border-bottom:1px solid var(--ink)}
+.cx-row{padding:18px 0;border-bottom:1px solid var(--line);align-items:start}
+.cx-d1 b{display:block;font-size:17px}.cx-d1 small{display:block;color:var(--muted);font-size:13px;margin:2px 0 8px}
+.cx-st{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:4px 10px;border-radius:999px;border:1px solid var(--line)}
+.cx-st.ax{background:var(--ink);color:var(--bg);border-color:var(--ink)}.cx-st.lx{background:var(--zone,#EFEDE8);color:var(--ink)}.cx-st.px{background:var(--mark);color:#1A1915;border-color:var(--mark)}.cx-st.nx{color:var(--ink-2)}
+.cx-bar{position:relative;height:22px;margin:4px 0 2px;background:linear-gradient(var(--line),var(--line)) 0 50%/100% 1px no-repeat}
+.cx-ln{position:absolute;top:50%;height:3px;margin-top:-1.5px;background:var(--ink-2);opacity:.35}
+.cx-d{position:absolute;top:50%;width:14px;height:14px;margin:-7px 0 0 -7px;border-radius:50%}
+.cx-d.pa,.cx-k.pa{background:var(--bg);box-shadow:inset 0 0 0 2px var(--ink-2)}.cx-d.pw,.cx-k.pw{background:var(--ink)}.cx-d.ai,.cx-k.ai{background:var(--mark);box-shadow:inset 0 0 0 1.5px var(--ink)}
+.cx-k{display:inline-block;width:10px;height:10px;border-radius:50%;vertical-align:-1px;margin-right:6px}
+.cx-ax{display:flex;justify-content:space-between;font-size:11px;color:var(--muted)}
+.cx-v{display:flex;flex-wrap:wrap;gap:4px 16px;margin:10px 0 0}.cx-v div{display:flex;gap:6px;align-items:baseline;font-size:13px}.cx-v dt{color:var(--muted)}.cx-v dd{margin:0;font-weight:700}
+.cx-nos{font-size:13px;color:var(--muted);margin:2px 0 0}
+.cx-d3 p{margin:0 0 6px;font-size:14px;line-height:1.5}.cx-d3 small{font-size:12px;color:var(--muted);line-height:1.5;display:block}.cx-d3 a{color:var(--ink-2)}
+@media (max-width:900px){.cx-head{display:none}.cx-row{grid-template-columns:minmax(0,1fr);gap:10px}.cx-sum{grid-template-columns:repeat(2,minmax(0,1fr))}.cx-sum>div:nth-child(3){padding-left:0;border-left:0}.cx-sum>div:nth-child(n+3){border-top:1px solid var(--line)}.cx-sum b{font-size:32px}}
+.cx-dec{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-bottom:16px}
+.cx-dec>div{border-top:3px solid var(--ink);padding:12px 0 0;display:flex;flex-direction:column;gap:6px}.cx-dec>div:nth-child(2){border-color:var(--mark)}.cx-dec>div:nth-child(3){border-color:var(--ink-2)}.cx-dec>div:nth-child(4){border-color:var(--line)}
+.cx-dec b{font-size:22px;letter-spacing:-.01em}.cx-dec p{margin:0;font-size:15px;line-height:1.5;color:var(--ink-2);flex:1}.cx-dec small{font-size:12px;color:var(--muted)}
+.cx-blk{margin-top:8px}
+.cx-ind{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-bottom:12px}
+.cx-ind>div{border:1px solid var(--line);border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:8px}
+.cx-ind b{font-size:28px;font-weight:800;letter-spacing:-.02em;line-height:1.05}.cx-ind b i{font-family:var(--serif);font-weight:400;font-size:.7em}.cx-ind p{margin:0;font-size:14px;line-height:1.5;flex:1}.cx-ind small{font-size:12px;color:var(--muted)}.cx-ind a{color:var(--ink-2)}
+.cx-steps{list-style:none;counter-reset:cx;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.cx-steps li{counter-increment:cx;border:1px solid var(--line);border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:6px}
+.cx-steps li::before{content:counter(cx);font-family:var(--serif);font-style:italic;font-size:28px;color:var(--muted);line-height:1}
+.cx-steps b{font-size:16px}.cx-steps span{font-size:14px;line-height:1.5;color:var(--ink-2)}
+@media (max-width:1000px){.cx-ind{grid-template-columns:repeat(2,minmax(0,1fr))}.cx-steps{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:700px){.cx-dec,.cx-ind,.cx-steps{grid-template-columns:minmax(0,1fr)}}
+.cx-st.hx{background:var(--bg);color:var(--ink);border:1.5px solid var(--ink)}
+.cx-fig b{display:block;font-size:30px;font-weight:800;letter-spacing:-.02em;line-height:1}.cx-fig span{font-size:13px;color:var(--muted)}
+@media (max-width:1000px){.cx-dec{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.sc .btn:disabled{opacity:.35;cursor:not-allowed}.sc-go,#sc-next:not(:disabled),#sc-again{background:var(--ink);color:var(--bg)}
+.sc{border:1px solid var(--ink);border-radius:16px;padding:22px;background:var(--bg)}
+.sc-top{display:flex;align-items:center;gap:14px;margin-bottom:18px;font-size:12px;color:var(--muted);font-weight:600;letter-spacing:.04em}.sc-top span{white-space:nowrap}
+.sc-prog{flex:1;height:4px;background:var(--line);border-radius:4px;overflow:hidden}.sc-prog i{display:block;height:100%;width:0;background:var(--mark);transition:width .25s}
+.sc-lead{font-size:17px;line-height:1.55;max-width:62ch;margin:0 0 18px}
+.sc-q{font-size:clamp(19px,2vw,24px);line-height:1.35;font-weight:600;letter-spacing:-.01em;margin:0 0 16px;max-width:40ch}
+.sc-sub{font-size:13px;color:var(--muted);margin:16px 0 8px}
+.sc-row{display:flex;flex-wrap:wrap;gap:8px}
+.sc-b{font:inherit;font-size:15px;padding:10px 16px;border-radius:999px;border:1px solid var(--line);background:var(--bg);color:var(--ink);cursor:pointer;min-height:44px}
+.sc-b:hover{border-color:var(--ink)}.sc-b.on{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.sc-lik .sc-b{flex:1 1 0;min-width:120px}
+.sc-nav{display:flex;gap:10px;margin-top:20px}.btn.ghost{background:transparent;color:var(--ink)}
+.sc-res{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:18px}
+.sc-type .label{display:block}.sc-type{grid-column:1/-1;border-bottom:1px solid var(--line);padding-bottom:16px}.sc-type b{display:block;font-family:var(--serif);font-style:italic;font-weight:400;font-size:48px;line-height:1.1;margin:4px 0 8px;background:linear-gradient(transparent 60%,var(--mark) 60%,var(--mark) 90%,transparent 90%);display:inline-block}.sc-type p{margin:0 0 6px;font-size:16px;line-height:1.55;max-width:64ch}.sc-type small{font-size:12px;color:var(--muted)}
+.sc-cn{display:flex;gap:28px;margin:8px 0}.sc-cn b{display:block;font-size:34px;font-weight:800;line-height:1}.sc-cn span{font-size:13px;color:var(--muted)}.sc-cal p{font-size:14px;margin:0;color:var(--ink-2)}
+.sc-d{display:grid;grid-template-columns:minmax(0,1fr) 120px 32px;gap:10px;align-items:center;font-size:14px;padding:6px 0}.sc-t{height:8px;background:var(--line);border-radius:8px;overflow:hidden}.sc-t i{display:block;height:100%;background:var(--ink)}.sc-d b{text-align:right}
+.sc-ans{grid-column:1/-1;font-size:14px;line-height:1.5}.sc-ans div{padding:6px 0 6px 12px;border-left:3px solid var(--line);margin-top:6px}.sc-ans div.r{border-color:var(--mark)}.sc-ans div.w{border-color:var(--ink-2)}
+.sc-res .sc-nav{grid-column:1/-1}
+@media (max-width:700px){.sc{padding:16px}.sc-res{grid-template-columns:minmax(0,1fr)}.sc-type b{font-size:38px}.sc-lik .sc-b{flex:1 1 100%}.sc-d{grid-template-columns:minmax(0,1fr) 90px 28px}.cx-dec{grid-template-columns:minmax(0,1fr)}}
+.dx-card{display:flex;align-items:center;justify-content:space-between;gap:24px;border:1.5px solid var(--ink);border-radius:16px;padding:20px 24px;background:var(--bg)}
+.dx-card b{display:block;font-size:clamp(19px,2vw,24px);letter-spacing:-.01em;margin:6px 0 4px;line-height:1.25}.dx-card p{margin:0;color:var(--ink-2);font-size:15px;line-height:1.5;max-width:70ch}
+.dx-card .btn,.dx-res .btn:not(.ghost){background:var(--ink);color:var(--bg);white-space:nowrap;padding:12px 20px;font-size:15px}
+.dx-hero{margin:4px 0 28px;background:linear-gradient(90deg,var(--mark) 0 6px,var(--bg) 6px)}
+.dx-fab{position:fixed;right:18px;bottom:18px;z-index:60;display:inline-flex;align-items:center;gap:8px;font:inherit;font-size:14px;font-weight:600;padding:12px 18px;border-radius:999px;border:0;background:var(--ink);color:var(--bg);cursor:pointer;box-shadow:0 6px 24px rgba(0,0,0,.18)}
+.dx-fab .fs{display:none}.dx-fab .dot{width:9px;height:9px;border-radius:50%;background:var(--mark)}
+.dx-modal{position:fixed;inset:0;z-index:100;background:rgba(20,19,17,.45);display:flex;align-items:center;justify-content:center;padding:20px}
+.dx-modal[hidden]{display:none}
+.dx-box{background:var(--bg);color:var(--ink);border-radius:18px;width:min(760px,100%);max-height:calc(100vh - 40px);overflow:auto;padding:24px;box-shadow:0 20px 60px rgba(0,0,0,.3)}
+.dx-hd{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}.dx-x{font:inherit;font-size:13px;font-weight:600;background:none;border:1px solid var(--line);border-radius:999px;padding:6px 12px;color:var(--ink);cursor:pointer}
+.dx-top{display:flex;align-items:center;gap:14px;margin-bottom:18px;font-size:12px;color:var(--muted);font-weight:600}.dx-top span{white-space:nowrap}
+.dx-note{font-size:12px;color:var(--muted);margin:18px 0 0}
+.dx-score{display:grid;grid-template-columns:auto minmax(0,1fr);gap:24px;align-items:center;border-bottom:1px solid var(--line);padding-bottom:16px}
+.dx-score b{display:block;font-size:64px;font-weight:800;line-height:1;letter-spacing:-.03em}.dx-score small{color:var(--muted)}
+.dx-lv{font-family:var(--serif);font-style:italic;font-size:34px;background:linear-gradient(transparent 60%,var(--mark) 60%,var(--mark) 90%,transparent 90%)}.dx-score p{margin:6px 0 0;color:var(--ink-2)}
+.dx-sc{display:grid;grid-template-columns:minmax(0,1fr) 160px 52px;gap:6px 14px;align-items:center;padding:12px 0;border-bottom:1px solid var(--line)}
+.dx-sn b{display:block;font-size:15px}.dx-sn small{font-size:12px;color:var(--muted)}
+.dx-tr{position:relative;height:10px;background:var(--line);border-radius:10px;overflow:hidden}.dx-tr i{position:absolute;left:0;top:0;bottom:0;background:var(--ink);border-radius:10px}.dx-tr span{position:absolute;top:0;bottom:0;width:2px;background:var(--bg);z-index:1}
+.dx-bd{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;text-align:center;padding:3px 0;border-radius:999px;border:1px solid var(--line)}.dx-bd.high{background:var(--mark);color:#1A1915;border-color:var(--mark)}.dx-bd.low{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.dx-sc p{grid-column:1/-1;margin:0;font-size:14px;color:var(--ink-2);line-height:1.5}
+.dx-risk{margin-top:16px;padding:16px;border-left:4px solid var(--mark);background:var(--zone,#F3F1EC);border-radius:0 12px 12px 0}.dx-risk p{margin:6px 0;font-size:15px;line-height:1.5}.dx-risk small{font-size:12px;color:var(--muted)}.dx-risk a{color:var(--ink-2)}
+@media (max-width:700px){.dx-card .btn,.fw-cta .btn{white-space:normal;width:100%;text-align:center}.dx-card{flex-direction:column;align-items:stretch;padding:18px}.dx-modal{padding:0;align-items:stretch}.dx-box{border-radius:0;max-height:100vh;height:100%;padding:18px}.dx-sc{grid-template-columns:minmax(0,1fr) 52px}.dx-tr{grid-column:1/-1;order:3}.dx-sc p{order:4}.dx-score{grid-template-columns:minmax(0,1fr);gap:8px}.dx-fab .fl{display:none}.dx-fab .fs{display:inline}.dx-score b{font-size:52px}.dx-fab{right:12px;bottom:12px;padding:11px 14px;font-size:13px}}
+@media print{.dx-fab{display:none}}
+.fw-eq{border:1.5px solid var(--ink);border-radius:18px;padding:26px;margin-bottom:8px}
+.fw-f{margin:14px 0 10px}
+.fw-num{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr) auto minmax(0,1fr);gap:14px;align-items:stretch;padding-bottom:16px;border-bottom:3px solid var(--ink)}
+.fw-num>i,.fw-f i{font-style:normal;font-size:30px;font-weight:300;align-self:center;color:var(--muted)}
+.fw-num>div,.fw-den>div{display:flex;flex-direction:column;gap:6px}
+.fw-f b{font-size:clamp(18px,1.8vw,24px);letter-spacing:-.01em}.fw-f span{font-size:14px;color:var(--ink-2);line-height:1.45;flex:1}.fw-f a,.fw-f em{font-size:12px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);font-style:normal}.fw-f a{color:var(--ink);text-decoration:underline;text-decoration-color:var(--mark);text-decoration-thickness:3px;text-underline-offset:3px}
+.fw-den{display:flex;justify-content:center;padding-top:16px}.fw-den>div{max-width:320px;text-align:center;align-items:center}
+.fw-cap{margin:12px 0 0;font-size:15px;color:var(--ink-2);max-width:80ch}
+.fw-sec{margin-top:10px}
+.fw-core{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:16px;align-items:start;border-top:3px solid var(--ink);padding:16px 0;margin-bottom:12px}
+.fw-core b{font-size:clamp(20px,2.2vw,28px);letter-spacing:-.015em;line-height:1.2}.fw-core p{margin:8px 0 0;color:var(--ink-2);font-size:15px;line-height:1.55;max-width:75ch}
+.fw-s{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:4px 10px;border-radius:999px;border:1px solid var(--line);white-space:nowrap;align-self:flex-start}.fw-s.sup{background:var(--mark);color:#1A1915;border-color:var(--mark)}.fw-s.part{background:var(--zone,#EFEDE8)}.fw-s.open{border-color:var(--ink)}
+.fw-th,.fw-in{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.fw-in{grid-template-columns:repeat(4,minmax(0,1fr))}
+.fw-th>div,.fw-in>div{border:1px solid var(--line);border-radius:14px;padding:18px;display:flex;flex-direction:column;gap:8px}
+.fw-th b,.fw-in b{font-size:19px;letter-spacing:-.01em;line-height:1.25}.fw-th p,.fw-in p{margin:0;font-size:14px;line-height:1.5;color:var(--ink-2)}.fw-th p{flex:1}.fw-in p:not(.fw-q){flex:1}
+.fw-q{font-family:var(--serif);font-style:italic;font-size:18px!important;color:var(--ink)!important}
+.fw-th a,.fw-in a{font-size:13px;font-weight:600;color:var(--ink)}
+.fw-cta{border:1.5px solid var(--ink)!important;background:linear-gradient(180deg,var(--mark) 0 5px,var(--bg) 5px)}.fw-cta .btn{background:var(--ink);color:var(--bg);align-self:flex-start}
+.fw-std{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);gap:24px;align-items:start}
+.fw-cnt{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:1px solid var(--ink)}.fw-cnt>div{padding:14px 12px 0 0}.fw-cnt b{display:block;font-size:34px;font-weight:800;letter-spacing:-.02em;line-height:1}.fw-cnt span{font-size:13px;color:var(--muted)}
+.fw-rules{margin:0;padding:0;list-style:none;counter-reset:r}.fw-rules li{counter-increment:r;position:relative;padding:12px 0 12px 40px;border-top:1px solid var(--line);font-size:15px;line-height:1.5;color:var(--ink-2)}.fw-rules li b{color:var(--ink)}.fw-rules li::before{content:counter(r);position:absolute;left:0;top:8px;font-family:var(--serif);font-style:italic;font-size:26px;color:var(--muted)}
+.fw-open{font-size:clamp(17px,1.6vw,20px);line-height:1.55;max-width:70ch;margin:0;border-left:4px solid var(--mark);padding-left:18px}
+.fw-src{margin-top:28px;border-top:1px solid var(--ink);border-bottom:1px solid var(--line)}.fw-src summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:12px;padding:16px 0;font-size:15px;color:var(--ink-2)}.fw-src summary::-webkit-details-marker{display:none}.fw-src summary b{color:var(--ink);font-size:17px;margin-right:6px}.fw-sum-r{font-weight:600;color:var(--ink);border:1px solid var(--ink);border-radius:999px;padding:6px 14px;font-size:13px}
+@media (max-width:1000px){.fw-in{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:760px){.fw-eq{padding:18px}.fw-num{grid-template-columns:minmax(0,1fr)}.fw-num>i{justify-self:start;font-size:24px;line-height:1}.fw-den{justify-content:flex-start}.fw-den>div{text-align:left;align-items:flex-start}.fw-core{grid-template-columns:minmax(0,1fr)}.fw-th,.fw-in,.fw-std{grid-template-columns:minmax(0,1fr)}}
+.dx-lead{font-size:15px;color:var(--ink-2);line-height:1.55;margin:0 0 6px;max-width:60ch}.dx-go1{background:var(--ink)!important;color:var(--bg)!important;padding:12px 22px}
+.dx-opts{display:grid;gap:8px}
+.dx-o{font:inherit;text-align:left;font-size:15px;line-height:1.45;padding:14px 16px;border-radius:12px;border:1px solid var(--line);background:var(--bg);color:var(--ink);cursor:pointer;min-height:48px}
+.dx-o:hover,.dx-o:focus-visible{border-color:var(--ink)}.dx-o.on{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.dx-mix{padding:16px 0;border-bottom:1px solid var(--line)}
+.dx-stack{display:flex;height:34px;border-radius:8px;overflow:hidden;margin:8px 0}.dx-stack i{display:flex;align-items:center;padding:0 8px;min-width:0;overflow:hidden}.dx-stack span{font-size:12px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.p-c{background:var(--mark);color:#1A1915}.p-a{background:var(--ink);color:var(--bg)}.p-g{background:#9A958A;color:#fff}.p-d{background:var(--line);color:var(--ink)}
+.dx-keys{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:13px;color:var(--ink-2)}.dx-keys i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:6px;vertical-align:-1px}
+.dx-res .dx-sc{grid-template-columns:minmax(0,1fr) 160px 70px}
+@media (max-width:700px){.dx-res .dx-sc{grid-template-columns:minmax(0,1fr) 70px}.dx-stack span{display:none}}
 </style>
 </head>
 <body>
@@ -566,9 +677,10 @@ footer{margin-top:56px;padding-block:24px 40px;border-top:1px solid var(--line);
   <a href="#map">Living map</a>
   <a href="#leadership">Cognitive leadership</a>
   <a href="#countries">Countries</a>
+  <a href="#crossings">Crossings</a>
   <a href="#hype">Hype or real?</a>
   <a href="#month">This month</a>
-  <a href="#sources">Sources and method</a>
+  <a href="#sources">The framework</a>
   <a href="#about">About</a>
 </div></nav>
 
@@ -579,6 +691,10 @@ footer{margin-top:56px;padding-block:24px 40px;border-top:1px solid var(--line);
     <span class="label">Living map <span class="real">Verified sources</span></span>
     <h1>Human cognitive advantage <span class="em hl">in the age of AI.</span></h1>
     <p class="sub sub-long">Every company can now rent the same intelligence. Intelligence you can rent is intelligence your competitors have too. What no one can rent is the judgement of your people: the questions they ask, the risks they spot, the call they make when the machine is confidently wrong. I believe this human cognitive advantage is becoming the most valuable asset a leadership team owns. <b class="brand-b">Cognitive ROI</b> is my framework for measuring it. I have been building the evidence since April 2025.</p>
+  </div>
+  <div class="dx-card dx-hero">
+    <div><span class="label">Cognitive ROI Check <span class="real">2 minutes</span></span><b>Are your people and your AI in the right places?</b><p>Ten business situations. Pick what would really happen in your company. You get your pattern, what to watch under pressure and the biggest gap.</p></div>
+    <button type="button" class="btn dx-open">Take the Cognitive ROI Check</button>
   </div>
   <div class="lmstats" id="lmstats"></div>
   <div class="pgroups" id="threads" role="group" aria-label="Patterns"></div>
@@ -602,6 +718,75 @@ footer{margin-top:56px;padding-block:24px 40px;border-top:1px solid var(--line);
       <div class="panel strong detail fade" id="detail" aria-live="polite"></div>
     </div>
   </div>
+</section>
+
+<section class="view" id="v-crossings" data-view="crossings" hidden>
+  <div class="vhead">
+    <span class="label">Crossings <span class="real">Verified studies</span></span>
+    <h1>Where to automate. Where to pair. <span class="em hl">Who makes the difference.</span></h1>
+    <p class="sub sub-long">On tasks with a right answer, AI alone often beats people working with AI. That is the average. Inside the same studies, some people lift the result above the AI and others pull it down. <span class="brand-b">Cognitive ROI</span> measures who and why. A crossing is where the average person stops adding value. The people who still add value past it are the asset.</p>
+  </div>
+  <div class="cx-dec">
+    <div><span class="label">Automate</span><b>AI alone is ahead</b><p>Diagnosis on clinical cases, self-triage, picking startups, abstract puzzles. Keep a human for accountability. Do not expect the human to add accuracy.</p><small>5 studies</small></div>
+    <div><span class="label">Pair</span><b>People with AI are ahead</b><p>Inventory planning. The person in the loop pays for itself.</p><small>1 study</small></div>
+    <div><span class="label">Keep people in charge</span><b>The person alone is ahead</b><p>Experts in their own complex codebase. Problems outside what AI does well. Here AI slowed people down or led them to wrong answers.</p><small>2 studies</small></div>
+    <div><span class="label">Test first</span><b>Level</b><p>Treatment plans, knowledge questions. The result depends on who the person is.</p><small>2 studies</small></div>
+  </div>
+  <div class="panel cx-panel">
+    <div class="cx-head"><span>Domain</span><span>Person alone, person with AI, AI alone</span><span>What the study found</span></div>
+<div class="cx-row"><div class="cx-d1"><b>Diagnosis</b><small>Physicians, clinical cases</small><span class="cx-st ax">AI alone ahead</span></div><div class="cx-d2"><div class="cx-bar"><i class="cx-ln" style="left:74%;width:18%"></i><i class="cx-d pa" style="left:74%"></i><i class="cx-d pw" style="left:76%"></i><i class="cx-d ai" style="left:92%"></i></div><div class="cx-ax"><span>0</span><span>Score, %</span><span>100</span></div><dl class="cx-v"><div><dt><i class="cx-k pa"></i>Person alone</dt><dd>74</dd></div><div><dt><i class="cx-k pw"></i>Person with AI</dt><dd>76</dd></div><div><dt><i class="cx-k ai"></i>AI alone</dt><dd>about 92</dd></div></dl></div><div class="cx-d3"><p>Adding GPT-4 did not significantly improve physicians.</p><small>Randomised trial, 50 physicians, GPT-4, 2024. Median scores. <a href="https://hai.stanford.edu/news/can-ai-improve-medical-diagnostic-accuracy" target="_blank" rel="noopener">Goh et al., JAMA Network Open 2024</a></small></div></div>
+<div class="cx-row"><div class="cx-d1"><b>Diagnosis, replication</b><small>Clinicians in the UK</small><span class="cx-st ax">AI alone ahead</span></div><div class="cx-d2"><div class="cx-bar"><i class="cx-ln" style="left:66.3%;width:29.299999999999997%"></i><i class="cx-d pa" style="left:66.3%"></i><i class="cx-d pw" style="left:73.7%"></i><i class="cx-d ai" style="left:95.6%"></i></div><div class="cx-ax"><span>0</span><span>Score, %</span><span>100</span></div><dl class="cx-v"><div><dt><i class="cx-k pa"></i>Person alone</dt><dd>66.3</dd></div><div><dt><i class="cx-k pw"></i>Person with AI</dt><dd>73.7</dd></div><div><dt><i class="cx-k ai"></i>AI alone</dt><dd>95.6</dd></div></dl></div><div class="cx-d3"><p>Preprint. Small sample.</p><small>22 clinicians, GPT-4o, 2025. Order not randomised. AI alone is the mean of four cases. <a href="https://www.medrxiv.org/content/10.1101/2025.08.25.25334383" target="_blank" rel="noopener">UK replication, medRxiv preprint 2025</a></small></div></div>
+<div class="cx-row"><div class="cx-d1"><b>Self-triage</b><small>Members of the public</small><span class="cx-st ax">AI alone ahead</span></div><div class="cx-d2"><div class="cx-bar"><i class="cx-ln" style="left:34.5%;width:60.400000000000006%"></i><i class="cx-d pw" style="left:34.5%"></i><i class="cx-d ai" style="left:94.9%"></i></div><div class="cx-ax"><span>0</span><span>Conditions found, %</span><span>100</span></div><dl class="cx-v"><div><dt><i class="cx-k pw"></i>Person with AI</dt><dd>under 34.5</dd></div><div><dt><i class="cx-k ai"></i>AI alone</dt><dd>94.9</dd></div></dl></div><div class="cx-d3"><p>People with a chatbot did no better than the control group.</p><small>Randomised, preregistered, 1,298 people, three chatbots, 2026. <a href="https://pubmed.ncbi.nlm.nih.gov/41663592/" target="_blank" rel="noopener">Bean et al., Nature Medicine 2026</a></small></div></div>
+<div class="cx-row"><div class="cx-d1"><b>Venture selection</b><small>Predicting which startups raise the most</small><span class="cx-st ax">AI alone ahead</span></div><div class="cx-d2"><div class="cx-bar"><i class="cx-ln" style="left:45%;width:29%"></i><i class="cx-d pa" style="left:45%"></i><i class="cx-d pw" style="left:67%"></i><i class="cx-d ai" style="left:74%"></i></div><div class="cx-ax"><span>0</span><span>Rank correlation × 100</span><span>100</span></div><dl class="cx-v"><div><dt><i class="cx-k pa"></i>Person alone</dt><dd>45, best expert</dd></div><div><dt><i class="cx-k pw"></i>Person with AI</dt><dd>67, expert plus AI</dd></div><div><dt><i class="cx-k ai"></i>AI alone</dt><dd>74</dd></div></dl></div><div class="cx-d3"><p>Human and AI judgements were combined after the fact. Interactive work was not tested.</p><small>30 startups scored before funding closed, 2026. 346 managers, three expert investors, many models. <a href="https://arxiv.org/abs/2602.01684" target="_blank" rel="noopener">Csaszar, Peterson and Wilde, arXiv preprint 2026</a></small></div></div>
+<div class="cx-row"><div class="cx-d1"><b>Abstract reasoning puzzles</b><small>ARC-AGI-2, new visual puzzles</small><span class="cx-st ax">AI alone ahead</span></div><div class="cx-d2"><div class="cx-bar"><i class="cx-ln" style="left:66%;width:29%"></i><i class="cx-d pa" style="left:66%"></i><i class="cx-d ai" style="left:95%"></i></div><div class="cx-ax"><span>0</span><span>Tasks solved, %</span><span>100</span></div><dl class="cx-v"><div><dt><i class="cx-k pa"></i>Person alone</dt><dd>66, average person</dd></div><div><dt><i class="cx-k ai"></i>AI alone</dt><dd>95, best model, Nov 2026</dd></div></dl></div><div class="cx-d3"><p>In May 2025 the best models solved 3%. By November 2026 the best solved 95%. A crossing in about 18 months.</p><small>407 people tested in 2025. Model scores from the ARC Prize leaderboard. <a href="https://arxiv.org/abs/2505.11831" target="_blank" rel="noopener">Chollet et al., arXiv 2025</a>; <a href="https://benchlm.ai/benchmarks/arc-agi-2" target="_blank" rel="noopener">BenchLM, mirroring ARC Prize, Nov 2026</a></small></div></div>
+<div class="cx-row"><div class="cx-d1"><b>Management decisions</b><small>Physicians, treatment plans</small><span class="cx-st lx">Level</span></div><div class="cx-d2"><div class="cx-bar"><i class="cx-ln" style="left:35.7%;width:8.0%"></i><i class="cx-d pa" style="left:35.7%"></i><i class="cx-d pw" style="left:43.0%"></i><i class="cx-d ai" style="left:43.7%"></i></div><div class="cx-ax"><span>0</span><span>Score, %</span><span>100</span></div><dl class="cx-v"><div><dt><i class="cx-k pa"></i>Person alone</dt><dd>35.7</dd></div><div><dt><i class="cx-k pw"></i>Person with AI</dt><dd>43.0</dd></div><div><dt><i class="cx-k ai"></i>AI alone</dt><dd>43.7</dd></div></dl></div><div class="cx-d3"><p>Physicians gained from AI. AI alone scored about the same as physicians with AI.</p><small>Randomised trial, 92 physicians, GPT-4, 2025. <a href="https://www.nature.com/articles/s41591-024-03456-y" target="_blank" rel="noopener">Goh et al., Nature Medicine 2025</a></small></div></div>
+<div class="cx-row"><div class="cx-d1"><b>Knowledge and reasoning questions</b><small>Lay raters, nine task sets</small><span class="cx-st lx">Level</span></div><div class="cx-d2"><div class="cx-bar"><i class="cx-ln" style="left:49.9%;width:19.4%"></i><i class="cx-d pa" style="left:49.9%"></i><i class="cx-d pw" style="left:69.3%"></i><i class="cx-d ai" style="left:68.9%"></i></div><div class="cx-ax"><span>0</span><span>Accuracy, %</span><span>100</span></div><dl class="cx-v"><div><dt><i class="cx-k pa"></i>Person alone</dt><dd>49.9</dd></div><div><dt><i class="cx-k pw"></i>Person with AI</dt><dd>69.3, best combination</dd></div><div><dt><i class="cx-k ai"></i>AI alone</dt><dd>68.9</dd></div></dl></div><div class="cx-d3"><p>AI was wrong and people right on only 8.9% of items.</p><small>420 people, GPT-5-mini, 2026. <a href="https://arxiv.org/abs/2605.04070" target="_blank" rel="noopener">Xu et al., arXiv preprint 2026</a></small></div></div>
+<div class="cx-row"><div class="cx-d1"><b>Inventory planning</b><small>Operations decisions</small><span class="cx-st px">People with AI ahead</span></div><div class="cx-d2"><div class="cx-bar"><i class="cx-ln" style="left:46.6%;width:6.799999999999997%"></i><i class="cx-d pa" style="left:46.6%"></i><i class="cx-d pw" style="left:53.4%"></i><i class="cx-d ai" style="left:48.2%"></i></div><div class="cx-ax"><span>0</span><span>Normalised reward × 100</span><span>100</span></div><dl class="cx-v"><div><dt><i class="cx-k pa"></i>Person alone</dt><dd>46.6</dd></div><div><dt><i class="cx-k pw"></i>Person with AI</dt><dd>53.4</dd></div><div><dt><i class="cx-k ai"></i>AI alone</dt><dd>48.2</dd></div></dl></div><div class="cx-d3"><p>The team beat the best setup without people by about 10%.</p><small>Preregistered experiment, 69 people, frontier LLMs, 2026. <a href="https://arxiv.org/abs/2602.12631" target="_blank" rel="noopener">Baek et al., arXiv preprint 2026</a></small></div></div>
+<div class="cx-row"><div class="cx-d1"><b>Coding in your own codebase</b><small>Experienced open-source developers</small><span class="cx-st hx">Person alone ahead</span></div><div class="cx-d2"><div class="cx-bar"><i class="cx-ln" style="left:84%;width:16%"></i><i class="cx-d pa" style="left:100%"></i><i class="cx-d pw" style="left:84%"></i></div><div class="cx-ax"><span>0</span><span>Speed, person alone = 100</span><span>100</span></div><dl class="cx-v"><div><dt><i class="cx-k pa"></i>Person alone</dt><dd>100</dd></div><div><dt><i class="cx-k pw"></i>Person with AI</dt><dd>84, took 19% longer</dd></div></dl></div><div class="cx-d3"><p>They expected AI to speed them up by 24%. Afterwards they believed it had saved 20%. It cost them 19%.</p><small>Randomised trial, 16 developers, 246 real tasks, early 2025 tools. <a href="https://metr.org/blog/2025-07-10-early-2025-ai-experienced-os-dev-study/" target="_blank" rel="noopener">METR 2025</a></small></div></div>
+<div class="cx-row"><div class="cx-d1"><b>Consulting problem outside AI's reach</b><small>758 consultants, one business case</small><span class="cx-st hx">Person alone ahead</span></div><div class="cx-d2"><div class="cx-fig"><b class="tnum">−19 points</b><span>correct answers with AI</span></div></div><div class="cx-d3"><p>On a task chosen to sit outside what AI does well, consultants with AI were 19 percentage points less likely to reach the correct answer than those without.</p><small>Preregistered field experiment, GPT-4, 2023. <a href="https://papers.ssrn.com/abstract=4573321" target="_blank" rel="noopener">Dell'Acqua et al., Harvard Business School working paper 2023</a></small></div></div>
+    <div class="legend" style="margin-top:14px"><span><i class="cx-k pa"></i>Person alone</span><span><i class="cx-k pw"></i>Person with AI</span><span><i class="cx-k ai"></i>AI alone</span><span>Each row uses its own study's scale. Rows are not comparable with each other.</span></div>
+  </div>
+  <div class="cx-blk">
+    <div class="nm-h3"><span class="label">Averages hide the difference</span><h3>The same AI makes some people better and others worse</h3></div>
+    <div class="cx-ind">
+      <div><b class="tnum">+15% <i>and</i> −8%</b><p>Kenyan business owners got a GPT-4 business adviser. High performers gained just over 15%. Low performers did about 8% worse with the same tool.</p><small><a href="https://www.hks.harvard.edu/centers/cid/publications/uneven-impact-generative-ai-entrepreneurial-performance" target="_blank" rel="noopener">Otis et al., Harvard Business School working paper 2023</a>, randomised field trial</small></div>
+      <div><b class="tnum">30 to 60%</b><p>Share of individuals who added value over the best setup without people in inventory planning. The rest did not.</p><small><a href="https://arxiv.org/abs/2602.12631" target="_blank" rel="noopener">Baek et al., arXiv preprint 2026</a>, 69 people</small></div>
+      <div><b>Metacognition</b><p>ChatGPT made employees more creative only if they were good at planning and checking their own thinking.</p><small><a href="https://mitsloan.mit.edu/press/does-generative-ai-actually-enhance-creativity-workplace" target="_blank" rel="noopener">Lu et al., Journal of Applied Psychology 2025</a>, field experiment, 250 employees</small></div>
+      <div><b class="tnum">g = +0.46</b><p>Across 106 experiments, the pairing gained where the person was stronger than the AI. It lost where the AI was stronger (g = −0.54).</p><small><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC11659167/" target="_blank" rel="noopener">Vaccaro, Almaatouq and Malone, Nature Human Behaviour 2024</a></small></div>
+    </div>
+    <div class="friction"><b>Hypothesis under test.</b> People with developed cognitive capabilities are the source of future innovation and business vitality. The evidence so far fits one part of it: who the person is decides whether AI lifts or lowers the result. Which capabilities make the difference is not yet measured.</div>
+  </div>
+
+  <div class="cx-blk">
+    <div class="nm-h3"><span class="label">The open frontier</span><h3>Innovation is the least measured part</h3></div>
+    <div class="cols2">
+      <div class="panel"><span class="label">Measured</span><p style="margin:8px 0 0">Tasks with a right answer: diagnosis, triage, prediction, knowledge questions, planning. This is where AI alone tends to win.</p></div>
+      <div class="panel strong"><span class="label">Barely measured</span><p style="margin:8px 0 0">Finding the problem, asking a new question, choosing what to build. For creation tasks the pairing trends positive against the best alone (g = +0.19), with a range that still includes zero. No crossing study exists yet for strategy or invention.</p><small class="na-small">Vaccaro, Almaatouq and Malone 2024</small></div>
+    </div>
+  </div>
+
+  <div class="dx-card" style="margin-top:8px">
+    <div><span class="label">Cognitive ROI Check</span><b>Are your people and your AI in the right places?</b><p>Ten business situations. Two minutes. Your pattern, what to watch under pressure and the move.</p></div>
+    <button type="button" class="btn dx-open">Take the Cognitive ROI Check</button>
+  </div>
+
+  <div class="cx-blk">
+    <div class="nm-h3"><span class="label">For teams</span><h3>The individual test</h3></div>
+    <ol class="cx-steps">
+      <li><b>Pick the decisions that carry value.</b><span>Pricing, credit, forecasts, product bets, incident response.</span></li>
+      <li><b>Run each one three ways.</b><span>The person alone, AI alone and the person with AI, on the same cases.</span></li>
+      <li><b>Score every person.</b><span>Result with AI minus AI alone. That is the person's human marginal value.</span></li>
+      <li><b>Look at the spread.</b><span>The average tells you whether to automate. The top of the spread tells you whom to keep in the loop.</span></li>
+      <li><b>Profile the top.</b><span>Measure the capabilities that separate them: calibration, problem formulation, metacognition, domain depth.</span></li>
+      <li><b>Repeat with every model generation.</b><span>The line moves. Re-test before each rollout decision.</span></li>
+    </ol>
+  </div>
+
+  <div class="cols2" style="margin-top:14px">
+    <div class="panel"><span class="label">Method</span><p class="na-small" style="margin-top:8px">A row needs one study that compares at least two of the three on the same task: the person alone, the person with AI and AI alone. The row is labelled by which scored highest. Level: the study reports the leaders as about equal. Every row names the model and the year. Newer models are likely stronger, so older rows probably understate AI.</p></div>
+    <div class="panel"><span class="label">Limits</span><ul class="na-list" style="margin-top:8px"><li>Most tasks are vignettes or lab tasks, not daily work.</li><li>Lay participants and experts are mixed across rows.</li><li>In venture selection, judgements were combined after the fact.</li><li>The coding and consulting studies used AI tools from 2023 and early 2025.</li><li>Most domains have no study yet. Legal work, coding, strategy, negotiation and research design are not measured.</li></ul></div>
+  </div>
+  <p class="note" style="margin-top:14px">Updated with each monthly review. Rows marked preprint are not yet peer reviewed.</p>
 </section>
 
 <section class="view" id="v-hype" data-view="hype" hidden>
@@ -636,7 +821,7 @@ footer{margin-top:56px;padding-block:24px 40px;border-top:1px solid var(--line);
   <div class="vhead">
     <span class="label">Countries <span class="real">Published in 2026</span></span>
     <h1>Adoption, monetisation, investment. <span class="em hl">Market by market.</span></h1>
-    <p class="sub sub-long">About one in five people of working age uses AI. In nine surveyed countries, one in ten pays for it. This page follows where generative, agentic and physical AI take hold, market by market, and where the capital goes.</p>
+    <p class="sub sub-long">About one in five people of working age uses AI. In nine surveyed countries, one in ten pays for it. This page follows where generative, agentic and physical AI take hold, market by market. It also tracks where the capital goes.</p>
   </div>
   <div class="panel">
     <div class="btns" style="margin:0 0 8px" role="group" aria-label="Type of AI" id="tbtns"></div>
@@ -945,12 +1130,63 @@ footer{margin-top:56px;padding-block:24px 40px;border-top:1px solid var(--line);
 </section>
 <section class="view" id="v-sources" data-view="sources" hidden>
   <div class="vhead">
-    <span class="label">Sources and method</span>
-    <h1>Built on others' work <span class="em hl">and credited every time.</span></h1>
-    <p class="sub sub-long">Every figure on this site links to its source. Nothing is estimated or filled in. Datasets are rebuilt each month by open code. The data behind the site is free to reuse under CC BY 4.0.</p>
+    <span class="label">The framework</span>
+    <h1>What human judgement is worth <span class="em hl">next to AI.</span></h1>
+    <p class="sub sub-long">Every company now has access to the same intelligence. I believe the return on AI will be decided by the one input competitors cannot rent: the judgement of your people. <span class="brand-b">Cognitive ROI</span> is how I measure it, capability by capability.</p>
   </div>
-  <div class="panel" style="margin-bottom:14px">
-    <span class="label">How I check</span>
+
+  <div class="fw-eq">
+    <span class="label">The measure</span>
+    <div class="fw-f">
+      <div class="fw-num">
+        <div><b>Human marginal value</b><span>What a person adds over AI alone, on the same task</span><a href="#crossings">Crossings</a></div>
+        <i>×</i>
+        <div><b>Stakes</b><span>What the decision is worth to the business</span><em>Your P&amp;L</em></div>
+        <i>×</i>
+        <div><b>Advantage life</b><span>How long until AI closes the gap</span><a href="#leadership">Cognitive leadership</a></div>
+      </div>
+      <div class="fw-den"><div><b>Cost to keep</b><span>Training, practice and deliberate friction</span><a href="#leadership">Cognitive leadership</a></div></div>
+    </div>
+    <p class="fw-cap">A capability with high human marginal value on high-stakes decisions and a long advantage life is worth investing in. One AI has caught up with is worth automating.</p>
+  </div>
+
+  <div class="fw-sec">
+    <div class="nm-h3"><span class="label">The thesis</span><h3>One core claim. Three findings that sharpen it.</h3></div>
+    <div class="fw-core"><span class="na-tag">Core</span><div><b>Human cognition gains value as AI advances.</b><p>Open. On tasks with a right answer, AI alone was ahead in 5 of 10 studies. The person alone was ahead in 2. The core claim stands or falls on what is not yet measured: innovation, problem finding and strategy.</p></div><span class="fw-s open">Open</span></div>
+    <div class="fw-th">
+      <div><span class="fw-s sup">Supported</span><b>The value sits in the spread.</b><p>The same AI made high performers better and low performers worse. Who the person is decides whether AI lifts or lowers the result.</p><a href="#crossings">See the evidence</a></div>
+      <div><span class="fw-s part">Partly supported</span><b>Every advantage has a half-life.</b><p>AI went from 27% to 57% on ten areas of human cognition in one model generation. Puzzles where people led in 2025 were crossed by late 2026. The human side is still unmeasured.</p><a href="#leadership">See the evidence</a></div>
+      <div><span class="fw-s part">Partly supported</span><b>The name shapes the use.</b><p>A name that promised less kept more users. Human-like wording alone did not raise trust. Copilot, agent and digital employee each set different decision rights.</p><a href="#leadership">See the evidence</a></div>
+    </div>
+  </div>
+
+  <div class="fw-sec">
+    <div class="nm-h3"><span class="label">Four instruments</span><h3>Each one answers a question a CEO has to decide on.</h3></div>
+    <div class="fw-in">
+      <div><span class="obs-k">1</span><b>Measure</b><p class="fw-q">Where do people still add value?</p><p>The person alone, AI alone and the person with AI, on the same task.</p><a href="#crossings">Crossings</a></div>
+      <div><span class="obs-k">2</span><b>Track</b><p class="fw-q">How long does the advantage last?</p><p>The gap between human and AI, capability by capability, across model generations.</p><a href="#leadership">Cognitive leadership</a></div>
+      <div><span class="obs-k">3</span><b>Read the language</b><p class="fw-q">What does the name commit you to?</p><p>Conceptual metaphors behind copilot, agent and digital employee. What each one does to decision rights.</p><a href="#leadership">Cognitive leadership</a></div>
+      <div class="fw-cta"><span class="obs-k">4</span><b>Check</b><p class="fw-q">Where does your company stand?</p><p>Ten business situations, four patterns, the biggest gap and the move.</p><button type="button" class="btn dx-open">Take the Cognitive ROI Check</button></div>
+    </div>
+  </div>
+
+  <div class="fw-sec">
+    <div class="nm-h3"><span class="label">The standard</span><h3>Built to be trusted before it is quoted.</h3></div>
+    <div class="fw-std">
+      <div class="fw-cnt"><div><b class="tnum" id="fw-n">0</b><span>sources</span></div><div><b class="tnum" id="fw-n26">0</b><span>published in 2026</span></div><div><b class="tnum">Monthly</b><span>updates</span></div></div>
+      <ol class="fw-rules"><li><b>Every figure links to its source.</b> Nothing is estimated or filled in.</li><li><b>Every claim is judged when it comes due.</b> Only the claim is judged, never the person.</li><li><b>Evidence against the thesis is shown too.</b> Where AI wins, the page says so.</li></ol>
+    </div>
+  </div>
+
+  <div class="fw-sec">
+    <div class="nm-h3"><span class="label">The research programme</span><h3>What is not measured yet</h3></div>
+    <p class="fw-open">Finding the right problem. Asking a new question. Choosing what to build. Negotiating. Setting strategy. No study yet compares people, AI and the two together on these. This is where the core claim will be decided. The next editions of this work will go there.</p>
+  </div>
+
+  <details class="fw-src">
+    <summary><span><b>All sources</b> newest first, with how each one is used and its terms</span><span class="fw-sum-r">Show</span></summary>
+    <div class="panel" style="margin:14px 0">
+      <span class="label">How I check</span>
     <dl class="kv" style="margin-top:8px">
       <dt>Every number</dt><dd>Links to its source. Nothing is estimated or filled in.</dd>
       <dt>Datasets</dt><dd>Rebuilt each month by open code straight from the publisher's files, with checks on rows, ranges, duplicates and gaps. If a download fails, the last good version stays.</dd>
@@ -958,9 +1194,10 @@ footer{margin-top:56px;padding-block:24px 40px;border-top:1px solid var(--line);
       <dt>Evidence levels</dt><dd>A: official statistics or peer-reviewed. B: research with a stated method. C: a news report citing a primary source. D: a signal or forecast.</dd>
       <dt>Corrections</dt><dd>Dated and noted on the page they affect.</dd>
     </dl>
-  </div>
-  <div class="tablewrap"><table><thead><tr><th>Source</th><th>Area</th><th>Year</th><th>How it is used</th><th>Terms</th></tr></thead><tbody id="srcbody"></tbody></table></div>
-  <p class="threadnote" style="margin-top:16px">Listed here and want a correction? Corrections are rechecked against the source and logged.</p>
+    </div>
+    <div class="tablewrap"><table><thead><tr><th>Source</th><th>Area</th><th>Year</th><th>How it is used</th><th>Terms</th></tr></thead><tbody id="srcbody"></tbody></table></div>
+  </details>
+  <p class="threadnote" style="margin-top:16px">Listed here and want a correction? Corrections are rechecked against the source and logged. Data licence: CC BY 4.0.</p>
 </section>
 
 <section class="view" id="v-about" data-view="about" hidden>
@@ -982,6 +1219,15 @@ footer{margin-top:56px;padding-block:24px 40px;border-top:1px solid var(--line);
 
 </div></main>
 
+<button type="button" class="dx-fab dx-open" aria-label="Take the Cognitive ROI Check"><span class="dot" aria-hidden="true"></span><span class="fl">Take the Cognitive ROI Check</span><span class="fs">Cognitive ROI Check</span></button>
+<div class="dx-modal" id="dx" hidden role="dialog" aria-modal="true" aria-labelledby="dx-title">
+  <div class="dx-box">
+    <div class="dx-hd"><span class="label" id="dx-title">Cognitive ROI Check</span><button type="button" class="dx-x" id="dx-close" aria-label="Close">Close</button></div>
+    <div class="dx-top"><span id="dx-step"></span><div class="sc-prog"><i id="dx-bar"></i></div></div>
+    <div id="dx-body"></div>
+    <p class="dx-note">Built on situational judgement and forced choice, the formats professional assessments use to reduce flattering answers. Not yet validated. Answers stay in your browser. Nothing is stored or sent.</p>
+  </div>
+</div>
 <footer class="pad"><div class="wrap" style="display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;width:100%">
   <span>© Cognitive ROI™ is a framework by Anna Ernst.</span>
   <span class="tnum">Last checked 6 Nov 2026, updated monthly</span>
@@ -1102,6 +1348,15 @@ const DOTS=[
 ,{id:"hou-anthro",a:"mind",k:"exp",title:"Does Anthropomorphic Language Impact Public Perceptions of AI?",by:"Hou et al., arXiv preprint",y:2026,f:"815 people read texts about AI with or without human-like language. Their views barely moved.",u:"https://arxiv.org/abs/2606.29121"}
 ,{id:"hoffmann-team",a:"work",k:"obs",title:"Working With AI: tool or partner",by:"Hoffmann et al., Research for People in Organizations",y:2026,f:"217 people. Those who saw AI as a teammate reported higher team cohesion, linked to trust. Correlational.",u:"https://rpio.psychopen.eu/index.php/rpio/article/view/17157"}
 ,{id:"factset-q2",a:"signals",k:"dat",title:"S&P 500 earnings calls citing AI, Q2 2026",by:"FactSet",y:2026,f:"331 of 493 S&P 500 earnings calls cited AI between 15 June and 14 September 2026, about 67%. Third straight quarter above 65%.",u:"https://insight.factset.com/more-than-65-of-sp-500-earnings-calls-for-q2-cited-ai"}
+,{id:"goh25",a:"mind",k:"exp",title:"GPT-4 assistance for physician management reasoning",by:"Goh et al., Nature Medicine",y:2025,f:"In a randomised trial with 92 physicians, those with GPT-4 scored 43.0% against 35.7% without. GPT-4 alone scored 43.7%, about the same as physicians with it.",u:"https://www.nature.com/articles/s41591-024-03456-y"}
+,{id:"bean26",a:"mind",k:"exp",title:"LLMs as medical assistants for the public",by:"Bean et al., Nature Medicine",y:2026,f:"Alone, the chatbots found the relevant conditions in 94.9% of cases. 1,298 people using them found them in under 34.5%, no better than a control group.",u:"https://pubmed.ncbi.nlm.nih.gov/41663592/"}
+,{id:"csaszar26",a:"ventures",k:"exp",title:"The Strategic Foresight of LLMs",by:"Csaszar, Peterson and Wilde, arXiv preprint",y:2026,f:"Predicting which of 30 startups would raise most, the best model reached a rank correlation of 0.74. The best expert investor reached 0.45. Combining the two gave 0.67.",u:"https://arxiv.org/abs/2602.01684"}
+,{id:"baek26",a:"work",k:"exp",title:"AI Agents for Inventory Control",by:"Baek et al., arXiv preprint",y:2026,f:"In a preregistered experiment with 69 people, people working with an LLM beat the best setup without people by about 10%.",u:"https://arxiv.org/abs/2602.12631"}
+,{id:"yanez25",a:"mind",k:"exp",title:"Confidence-weighted human and machine judgements",by:"Yáñez et al., Patterns",y:2025,f:"Adding people improved machine teams even where machines were better on average, provided each side's confidence was weighed.",u:"https://doi.org/10.1016/j.patter.2025.101423"}
+,{id:"ukrep25",a:"mind",k:"exp",title:"Human-AI collaboration in clinical reasoning, UK replication",by:"medRxiv preprint",y:2025,f:"22 clinicians scored 66.3% without GPT-4o and 73.7% with it. GPT-4o alone scored 89 to 100% across four cases.",u:"https://www.medrxiv.org/content/10.1101/2025.08.25.25334383"}
+,{id:"otis",a:"work",k:"exp",title:"The Uneven Impact of Generative AI on Entrepreneurial Performance",by:"Otis et al., Harvard Business School working paper",y:2023,f:"In a randomised field trial in Kenya, high-performing business owners gained just over 15% from a GPT-4 adviser. Low performers did about 8% worse.",u:"https://www.hks.harvard.edu/centers/cid/publications/uneven-impact-generative-ai-entrepreneurial-performance"}
+,{id:"metr-rct",a:"work",k:"exp",title:"Early-2025 AI and experienced open-source developers",by:"METR",y:2025,f:"In a randomised trial, 16 experienced developers took 19% longer on 246 real tasks when AI was allowed. They believed it had saved them 20%.",u:"https://metr.org/blog/2025-07-10-early-2025-ai-experienced-os-dev-study/"}
+,{id:"dellacqua",a:"work",k:"exp",title:"Navigating the Jagged Technological Frontier",by:"Dell'Acqua et al., Harvard Business School working paper",y:2023,f:"758 consultants. Inside AI's reach, those with AI completed 12.2% more tasks. Outside it, they were 19 percentage points less likely to be correct.",u:"https://papers.ssrn.com/abstract=4573321"}
 ];
 const QN={1:"What can AI take over?",2:"What do humans bring?",3:"What does the market pay for?",4:"Where does the money go? Does it return?",t:"What people and firms claim"};
 const LV={A:"A. Official statistics or peer-reviewed",B:"B. Research with a stated method",C:"C. News report citing a primary source",D:"D. Signal or forecast"};
@@ -1136,8 +1391,8 @@ function showTip(html,e){tip.innerHTML=html;tip.style.opacity=1;moveTip(e)}
 function moveTip(e){const x=Math.min(e.clientX+14,innerWidth-250),y=e.clientY+14;tip.style.left=x+"px";tip.style.top=y+"px"}
 function hideTip(){tip.style.opacity=0}
 
-const VIEWS=["map","leadership","countries","hype","month","sources","about"];
-const ALIAS={ledger:"countries",emea:"countries",uschina:"countries",skills:"leadership",spotted:"month"};
+const VIEWS=["map","leadership","countries","crossings","hype","month","sources","about"];
+const ALIAS={framework:"sources",method:"sources",ledger:"countries",emea:"countries",uschina:"countries",skills:"leadership",spotted:"month"};
 function route(force){
   const h0=location.hash.slice(1), h=ALIAS[h0]||h0, v=force||(VIEWS.includes(h)?h:"map");
   document.querySelectorAll("[data-view]").forEach(s=>s.hidden=s.dataset.view!==v);
@@ -1504,7 +1759,7 @@ const CO={USA:[19.8,"US Census Bureau, May 2026","https://census.gov/library/sto
  POL:[8.4,"Eurostat, 2025 data, published December 2025","https://ec.europa.eu/eurostat/web/products-eurostat-news/w/ddn-20251211-2","firms with 10+ staff"],
  ROU:[5.2,"Eurostat, 2025 data, published December 2025","https://ec.europa.eu/eurostat/web/products-eurostat-news/w/ddn-20251211-2","firms with 10+ staff"]};
 const UF={
- World:{pay:["10%","of adults in nine countries pay for AI themselves (penetration). Another 9% have paid access through work or school. Argentina, Australia, Denmark, Finland, France, Japan, Norway, UK, USA; about 2,000 people each.","Reuters Institute, Generative AI and News Report, 29 Oct 2026","https://reutersinstitute.politics.ox.ac.uk/generative-ai-and-news-report-2026-standalone-tools-information-infrastructure"]},
+ World:{pay:["10%","of adults in nine countries pay for AI themselves (penetration). Another 9% have paid access through work or school. Argentina, Australia, Denmark, Finland, France, Japan, Norway, UK and USA. About 2,000 people each.","Reuters Institute, Generative AI and News Report, 29 Oct 2026","https://reutersinstitute.politics.ox.ac.uk/generative-ai-and-news-report-2026-standalone-tools-information-infrastructure"]},
  "North America":{pay:["4.6%","of US adults pay for OpenAI. Under 10% pay for any AI subscription (penetration).","Epoch AI and Blue Rose Research, Jan 2026","https://epochai.substack.com/p/polling-on-ai-usage"]},
  Europe:{eu:["20%","of all EU firms with 10+ staff used AI in 2025, the EU-wide figure.","Eurostat, December 2025","https://ec.europa.eu/eurostat/web/products-eurostat-news/w/ddn-20251211-2"],pay:["13%","of AI users in Germany pay for at least one AI application, up from 8% a year earlier (conversion). No EU-wide figure exists.","Bitkom, 18 May 2026, 1,003 people surveyed","https://www.bitkom.org/Presse/Presseinformation/Zahlungsbereitschaft-fuer-KI-erhoeht"]},
  MENA:{},Africa:{},China:{},"Asia-Pacific":{},"Latin America":{}};
@@ -1705,6 +1960,77 @@ items.map((el,i)=>[el,d(el),i]).sort((a,b)=>b[1]-a[1]||a[2]-b[2]).forEach(([el])
 (function(){const lab=()=>document.querySelectorAll("table").forEach(t=>{const h=[...t.querySelectorAll("thead th")].map(x=>x.textContent.trim());if(!h.length)return;t.classList.add("stack");t.querySelectorAll("tbody tr").forEach(r=>[...r.children].forEach((c,i)=>{if(h[i]&&!c.dataset.label)c.dataset.label=h[i]}))});
 lab();new MutationObserver(()=>{clearTimeout(window.__lt);window.__lt=setTimeout(lab,60)}).observe(document.body,{childList:true,subtree:true});})();
 </script>
+<script>
+(function(){
+const M=document.getElementById("dx"),B=document.getElementById("dx-body");if(!M)return;
+const AR={al:["Allocation","Where AI works alone and where people add value","Test your most valuable decisions three ways on your own cases: the person alone, AI alone and the person with AI."],
+ he:["Human edge","Who raises AI results and who lowers them","Score each person's result with AI against AI alone. Put the top of the spread on the decisions that matter."],
+ jd:["Judgement discipline","How AI output is checked","Set check levels by stakes. Make it normal to challenge AI output, with evidence."],
+ ow:["Ownership","Who frames the problem and answers for the result","Name an owner for every agent before it goes live. A senior person writes its goal, limits and escalation rules."],
+ up:["Capability upkeep","What you keep in practice","Have key people work without AI at set intervals and compare results. Fund the capabilities AI is not closing."]};
+const PT={c:["Calibrated","Decisions go where the evidence on your own cases points. People are judged on what they add over AI. Checks follow the stakes.","Matches the pattern where AI lifted results: people who check their own thinking and lead where they are stronger (Lu et al. 2025; Vaccaro et al. 2024)."],
+ a:["Automating","Benchmarks, averages and savings drive the decisions. AI scales fast.","Risk: errors spread where AI is out of its depth. On a task outside AI's reach, consultants with AI were 19 points less often correct (Dell'Acqua et al. 2023)."],
+ g:["Guarding","People keep the decisions and AI supports them. Risk is contained.","Risk: paying for human checks where AI alone is ahead. In diagnosis, doctors with AI scored 76, AI alone about 92 (Goh et al. 2024)."],
+ d:["Drifting","Nobody owns how work is split between people and AI. Each team decides for itself.","Risk: when an agent acts, nobody is sure who answers for it. The EU AI Act requires human oversight for high-risk AI (Article 14)."]};
+const Q=[
+ ["al","A vendor's model beats your analysts on a benchmark for credit decisions. What happens next in your company?",{a:"A rollout starts. The benchmark is strong and the savings are clear.",g:"Analysts keep the decision. The model becomes their second opinion.",c:"A few hundred past cases are rerun three ways before anything changes.",d:"Each business unit decides for itself whether to use it."}],
+ ["al","An AI pricing tool has run for a year. How does your company know whether it pays?",{a:"Margins went up after rollout. That is the main signal.",g:"Managers sign off every price, so the risk is contained.",c:"The same deals are compared: tool alone, managers alone, both together.",d:"The team that bought it reports on how much it is used."}],
+ ["he","Two managers use the same AI assistant. One's forecasts improved, the other's got worse. What does your company see?",{a:"Average forecast accuracy, which went up.",g:"Nothing changes. A senior planner reviews every forecast anyway.",c:"Each person's accuracy with AI against the AI alone.",d:"Nothing. Tool use is not tracked by person."}],
+ ["he","A team that reviews AI output must shrink from 20 people to 10. How are the ten chosen?",{a:"By the number of cases each person handles.",g:"By seniority and years of experience.",c:"By how often each person's reviews improved the outcome on past cases.",d:"Team leads decide based on their view."}],
+ ["jd","A confident AI summary of a contract goes into a deal decision. What happens?",{a:"It is used. Rechecking would erase the time saved.",g:"A lawyer rereads the full contract, as for any deal.",c:"Clauses carrying money or liability are checked against the original.",d:"It depends on who is on the deal."}],
+ ["jd","A junior analyst says the AI's market estimate is wrong. A senior leader likes the estimate. What usually happens?",{a:"The AI estimate stands. It draws on more data.",g:"The senior leader's judgement decides.",c:"The analyst shows the evidence and the estimate is tested before the decision.",d:"Nothing formal. It depends on the people in the room."}],
+ ["ow","An AI agent sends a wrong price to 300 customers. Who answers for it?",{a:"IT, who run the agent platform.",g:"That cannot happen here. A person approves every price.",c:"The named owner of that agent, set when it went live.",d:"That would be worked out after the incident."}],
+ ["ow","A team wants agents to run a full procurement process. Who decides what the agents should achieve?",{a:"The vendor's default setup, tuned over time.",g:"Nobody. Procurement keeps the process and agents only draft.",c:"A senior person sets the goal, the limits and when to escalate.",d:"The team building it works it out as they go."}],
+ ["up","Your forecasting team uses AI for every forecast now. What happens to their own forecasting ability?",{a:"It matters less. The AI does the forecasting.",g:"AI stays a support tool so people keep doing the core work.",c:"A few times a year they forecast without AI and results are compared.",d:"Nobody has looked at it."}],
+ ["up","Next year's budget has room for one investment. Which is most likely to win?",{a:"More AI licences to extend automation.",g:"Training to bring every team to the same standard.",c:"The capabilities AI is not closing, in the people who use AI most.",d:"Whatever the strongest business unit asks for."}]
+];
+let i=0,ans=[],ord=[],last=null;
+const bar=document.getElementById("dx-bar"),st=document.getElementById("dx-step");
+const shuf=a=>{a=a.slice();for(let k=a.length-1;k>0;k--){const j=Math.floor(Math.random()*(k+1));[a[k],a[j]]=[a[j],a[k]]}return a};
+function open(e){last=e&&e.currentTarget;M.hidden=false;document.body.style.overflow="hidden";start();setTimeout(()=>{const f=M.querySelector(".sc-b,.btn");f&&f.focus()},30)}
+function start(){i=0;ans=[];ord=Q.map(()=>shuf(["a","g","c","d"]));intro()}
+function close(){M.hidden=true;document.body.style.overflow="";last&&last.focus()}
+document.querySelectorAll(".dx-open").forEach(b=>b.addEventListener("click",open));
+document.getElementById("dx-close").onclick=close;M.addEventListener("click",e=>{if(e.target===M)close()});
+document.addEventListener("keydown",e=>{if(!M.hidden&&e.key==="Escape")close()});
+function intro(){bar.style.width="0";st.textContent="Before you start";
+ B.innerHTML=`<p class="sc-q">Ten business situations. For each, pick what would really happen in your company today.</p><p class="dx-lead">Every option is a reasonable choice. None is labelled right or wrong. Answer for how things work now, not for how they should work.</p><div class="sc-nav"><button type="button" class="btn dx-go1" id="dx-start">Start</button></div>`;
+ document.getElementById("dx-start").onclick=()=>draw();}
+function draw(){
+ if(i<Q.length){const q=Q[i];bar.style.width=(i/Q.length*100)+"%";st.textContent=`Situation ${i+1} of ${Q.length}`;
+  B.innerHTML=`<p class="sc-q">${q[1]}</p><div class="dx-opts">${ord[i].map(k=>`<button type="button" class="dx-o${ans[i]===k?" on":""}" data-k="${k}">${q[2][k]}</button>`).join("")}</div><div class="sc-nav">${i>0?'<button type="button" class="btn ghost" id="dx-back">Back</button>':""}</div>`;
+  B.querySelectorAll("[data-k]").forEach(b=>b.onclick=()=>{ans[i]=b.dataset.k;i++;draw()});
+  const bk=document.getElementById("dx-back");if(bk)bk.onclick=()=>{i--;draw()};
+ }else res();
+}
+function res(){bar.style.width="100%";st.textContent="Your profile";
+ const cnt={c:0,a:0,g:0,d:0};ans.forEach(k=>cnt[k]++);
+ const pct=k=>Math.round(cnt[k]/Q.length*100);
+ const area={};Object.keys(AR).forEach(k=>area[k]=0);Q.forEach((q,j)=>{if(ans[j]==="c")area[q[0]]++});
+ const dom=Object.keys(cnt).sort((x,y)=>cnt[y]-cnt[x]||("cagd".indexOf(x)-"cagd".indexOf(y)))[0];
+ const der=["a","g","d"].sort((x,y)=>cnt[y]-cnt[x])[0];
+ const gap=Object.keys(area).sort((x,y)=>area[x]-area[y])[0];
+ const lvl=n=>n===2?["Strong","high"]:n===1?["Partial","mid"]:["Gap","low"];
+ B.innerHTML=`<div class="dx-res">
+ <div class="dx-score"><div><span class="label">Calibrated choices</span><b class="tnum">${cnt.c}</b><small>of ${Q.length}</small></div><div><span class="label" style="display:block">Your dominant pattern</span><span class="dx-lv">${PT[dom][0]}</span><p>${PT[dom][1]}</p></div></div>
+ <div class="dx-mix"><span class="label">Your pattern mix</span><div class="dx-stack">${["c","a","g","d"].filter(k=>cnt[k]).map(k=>`<i class="p-${k}" style="width:${pct(k)}%"><span>${PT[k][0]} ${pct(k)}%</span></i>`).join("")}</div>
+ <div class="dx-keys">${["c","a","g","d"].map(k=>`<span><i class="p-${k}"></i>${PT[k][0]} ${pct(k)}%</span>`).join("")}</div></div>
+ ${cnt[der]?`<div class="dx-risk"><span class="label">Under pressure, watch for: ${PT[der][0]}</span><p>${PT[der][1]}</p><small>${PT[der][2]}</small></div>`:""}
+ <div class="dx-prof"><span class="label" style="display:block;margin-top:16px">Five areas</span>${Object.keys(AR).map(k=>{const L=lvl(area[k]);return `<div class="dx-sc"><div class="dx-sn"><b>${AR[k][0]}</b><small>${AR[k][1]}</small></div><div class="dx-tr"><span style="left:50%"></span><i style="width:${area[k]*50}%"></i></div><span class="dx-bd ${L[1]}">${L[0]}</span></div>`}).join("")}</div>
+ ${area[gap]===2?`<div class="dx-risk"><span class="label">No gap found</span><p>Every area showed calibrated choices. Re-run the check with each new model generation.</p></div>`:`<div class="dx-risk"><span class="label">${area[gap]===0?"Biggest gap":"Weakest area"}: ${AR[gap][0]}</span><p><b>The move.</b> ${AR[gap][2]}</p><small>${PT.c[2]}</small></div>`}
+ <div class="sc-nav"><button type="button" class="btn" id="dx-again">Start again</button></div></div>`;
+ document.getElementById("dx-again").onclick=start;
+}
+})();
+</script>
+<script>
+(function(){try{const n=DOTS.length,n26=DOTS.filter(d=>+d.y===2026).length;const a=document.getElementById("fw-n"),b=document.getElementById("fw-n26");if(a)a.textContent=n;if(b)b.textContent=n26;
+const d=document.querySelector(".fw-src");if(d)d.addEventListener("toggle",()=>{d.querySelector(".fw-sum-r").textContent=d.open?"Hide":"Show"})}catch(e){}})();
+</script>
+
+
+
+
 
 </body>
 </html>
